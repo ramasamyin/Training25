@@ -8,7 +8,28 @@
 namespace Training_1 {
    internal class Program {
       static void Main (string[] args) {
-         Console.WriteLine ("Hello, World!");
+
+         int inputNumber = 0;
+         bool isValidNumber = false;
+
+         while (!isValidNumber) {
+            Console.WriteLine ("Type in a decimal number");
+            isValidNumber = int.TryParse (Console.ReadLine (), out inputNumber);
+
+            if (!isValidNumber) {
+               Console.WriteLine ("\nThe number is not valid.");
+            }
+
+         }
+
+         Console.WriteLine ($"\nInput: {inputNumber}");
+
+         //binary conversion
+         Console.WriteLine ($"Binary: {Convert.ToString (inputNumber, 2)}");
+
+         //hexadecimal conversion
+         Console.WriteLine ($"HEX: {Convert.ToString (inputNumber, 16).ToUpper ()}");
+
       }
    }
 }

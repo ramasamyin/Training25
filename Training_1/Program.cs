@@ -16,22 +16,31 @@ namespace Training_1 {
          Console.WriteLine ("Type in the second number");
          int.TryParse (Console.ReadLine (), out number2);
 
-         int num1 = number1;
-         int num2 = number2;
-         int remainder;
+         if (number1 == 0 || number2 == 0) {
+            Console.WriteLine ("GCD: 0");
+            Console.WriteLine ("LCM: 0");
 
-         do {
+         } else {
+            int num1 = number1;
+            int num2 = number2;
+            int remainder;
 
-            remainder = number1 % number2;
-            number1 = number2;
-            number2 = remainder;
+            do {
+
+               remainder = number1 % number2;
+               number1 = number2;
+               number2 = remainder;
 
 
 
-         } while (remainder != 0);
+            } while (remainder != 0);
 
-         Console.WriteLine ($"\nGCD: {number1}");
-         Console.WriteLine ($"LCM: {(num1 * num2) / number1}");
+            Console.WriteLine ($"\nGCD: {number1}");
+            Console.WriteLine ($"LCM: {(num1 * num2) / number1}");
+
+
+         }
+
       }
    }
 }

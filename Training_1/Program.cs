@@ -18,7 +18,6 @@ namespace Training_1 {
          } else {
             if (Armstrong (number)) { Console.WriteLine ($"Yes. {number} is an Armstrong Number "); } else { Console.WriteLine ($"No. {number} is not an Armstrong number"); }
          }
-
       }
       static bool Armstrong (int n1) {
          int sum = 0;
@@ -26,11 +25,8 @@ namespace Training_1 {
          foreach (char c in n1.ToString ()) {
             int digit = c - '0';
             sum += (int)Math.Pow (digit, length);
-
          }
-
          return n1 == sum;
-
       }
    }
 }

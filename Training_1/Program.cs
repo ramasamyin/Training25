@@ -8,73 +8,49 @@
 namespace Training_1 {
    internal class Program {
       static void Main (string[] args) {
-
          /// <summary>
          /// Converts a decimal number to binary and hexadecimal.
          /// Uses either manual division method or built-in Convert.ToString(number, base).
          /// </summary>
-
-
-         Console.WriteLine ("Give a number as input");
          int number = 0;
-         bool isValid = false;
-
-         while (!isValid) {
-            Console.WriteLine ("Type in a decimal number");
-            isValid = int.TryParse (Console.ReadLine (), out number);
-
-            if (!isValid) {
-               Console.WriteLine ("\nThe number is not valid.");
-            }
+         Console.WriteLine ("Give a number as input");
+         while (!int.TryParse (Console.ReadLine (), out number)) {
+            Console.WriteLine ("\nThe number is not valid.");
          }
-
-         int originalNumber = number;
-
          // Binary Conversion
-         List<int> binaryRemainders = new List<int> ();
+         List<int> binaryRemainders = new ();
          int tempNumber = number;
          while (tempNumber > 0) {
-            int remainder = tempNumber % 2;
-            binaryRemainders.Add (remainder);
+            binaryRemainders.Add (tempNumber % 2);
             tempNumber /= 2;
          }
          binaryRemainders.Reverse ();
-
-         Console.WriteLine ($"\nInput: {originalNumber}");
+         Console.WriteLine ($"\nInput: {number}");
          Console.Write ("Binary: ");
          foreach (int value in binaryRemainders) {
             Console.Write (value);
          }
-
          // Hexadecimal Conversion
-         List<string> hexRemainders = new List<string> ();
+         List<string> hexRemainders = new ();
          tempNumber = number;
          while (tempNumber > 0) {
-
-            int remainder = tempNumber % 16;
-            string strRemainder;
-
-            switch (remainder) {
-               case 10: strRemainder = "A"; break;
-               case 11: strRemainder = "B"; break;
-               case 12: strRemainder = "C"; break;
-               case 13: strRemainder = "D"; break;
-               case 14: strRemainder = "E"; break;
-               case 15: strRemainder = "F"; break;
-               default: strRemainder = remainder.ToString (); break;
-            }
-
-
+            string strRemainder = (tempNumber % 16) switch {
+               10 => "A",
+               11 => "B",
+               12 => "C",
+               13 => "D",
+               14 => "E",
+               15 => "F",
+               _ => (tempNumber % 16).ToString ()
+            };
             hexRemainders.Add (strRemainder);
             tempNumber /= 16;
          }
          hexRemainders.Reverse ();
-
          Console.Write ("\nHexadecimal: ");
          foreach (string value in hexRemainders) {
             Console.Write (value);
          }
       }
-
    }
 }

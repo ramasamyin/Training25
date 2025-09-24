@@ -5,23 +5,20 @@
 // Program.cs
 // Program on main branch.
 // ------------------------------------------------------------------------------------------------
-namespace Training_1 {
-   internal class Program {
-      static void Main (string[] args) {
-         int number = 0;
-         Console.WriteLine ("Give an input for which the digital root has to be found");
-         while (!int.TryParse (Console.ReadLine (), out number)) {
-            Console.WriteLine ("Please enter a valid number");
+namespace Training_1;
+internal class Program {
+   static void Main (string[] args) {
+      Console.WriteLine ("Enter a number (must be 2 digits) for which the digital root has to be found");
+      int n;
+      while (!int.TryParse (Console.ReadLine (), out n)) Console.WriteLine ("Please enter a valid number");
+      while (n >= 10) {
+         int sum = 0;
+         foreach (char c in n.ToString ()) {
+            sum += c - '0';
          }
-         while (number >= 10) {
-            int sum = 0;
-            foreach (char n in number.ToString ()) {
-               int digit = n - '0';
-               sum += digit;
-            }
-            number = sum;
-         }
-         Console.WriteLine ($"\nThe digital root is {number}");
+         n = sum;
       }
+      Console.WriteLine ($"\nThe digital root is {n}");
    }
 }
+

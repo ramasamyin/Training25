@@ -19,7 +19,7 @@ internal class Program {
          tmp /= 2;
       }
       binaries.Reverse ();
-      string binaryString = string.Join ("", binaries);
+      string binary = string.Join ("", binaries);
       // Hexadecimal Conversion
       List<string> hexaDecimals = [];
       tmp = n;
@@ -37,8 +37,8 @@ internal class Program {
          tmp /= 16;
       }
       hexaDecimals.Reverse ();
-      string hexString = string.Join ("", hexaDecimals);
-      Console.WriteLine ($"\nInput: {n}\nBinary: {binaryString}\nHexadecimal: {hexString}");
+      string hexaDecimal = string.Join ("", hexaDecimals);
+      Console.WriteLine ($"\nInput: {n}\nBinary: {binary}\nHexadecimal: {hexaDecimal}");
    }
 }
 

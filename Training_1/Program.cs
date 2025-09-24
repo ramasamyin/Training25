@@ -1,4 +1,5 @@
-﻿// ------------------------------------------------------------------------------------------------
+﻿// ---
+---------------------------------------------------------------------------------------------
 // Training ~ A training program for new joinees at Metamation, Batch- July 2025.
 // Copyright (c) Metamation India.
 // ------------------------------------------------------------------
@@ -9,23 +10,22 @@ namespace Training_1 {
    internal class Program {
       static void Main (string[] args) {
          Console.WriteLine ("Type in a number");
-         int.TryParse (Console.ReadLine (), out int number1);
+         int.TryParse (Console.ReadLine (), out int n1);
          Console.WriteLine ("Type in the second number");
-         int.TryParse (Console.ReadLine (), out int number2);
-         if (number1 == 0 || number2 == 0) {
+         int.TryParse (Console.ReadLine (), out int n2);
+         if (n1 == 0 || n2 == 0) {
             Console.WriteLine ("GCD: 0");
             Console.WriteLine ("LCM: 0");
          } else {
-            int num1 = number1;
-            int num2 = number2;
+            var (num1, num2) = (n1, n2);
             int remainder;
             do {
-               remainder = number1 % number2;
-               number1 = number2;
-               number2 = remainder;
+               remainder = n1 % n2;
+               n1 = n2;
+               n2 = remainder;
             } while (remainder != 0);
-            Console.WriteLine ($"\nGCD: {number1}");
-            Console.WriteLine ($"LCM: {(num1 * num2) / number1}");
+            Console.WriteLine ($"\nGCD: {n1}");
+            Console.WriteLine ($"LCM: {(num1 * num2) / n1}");
          }
       }
    }

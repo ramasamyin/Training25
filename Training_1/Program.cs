@@ -8,15 +8,16 @@
 namespace Training_1;
 internal class Program {
    static void Main (string[] args) {
-      Console.WriteLine ("Give an input number");
-      if (!int.TryParse (Console.ReadLine (), out int number)) Console.WriteLine ("You have not entered a valid number");
-      else if (number < 0) Console.WriteLine ("Enter a non-negative number");
-      else Console.WriteLine (Armstrong (number) ? "Armstrong Number" : "Not an Armstrong Number");
+      print ("Give an input number");
+      if (!int.TryParse (Console.ReadLine (), out int n)) print ("You have not entered a valid number");
+      else if (n < 0) print ("Enter a non-negative number");
+      else print (Armstrong (n) ? "Armstrong Number" : "Not an Armstrong Number");
    }
+   static void print (string message) { Console.WriteLine (message); }
    static bool Armstrong (int n) {
-      (int sum, int length) = (0, n.ToString ().Length);
+      var (sum, len) = (0, n.ToString ().Length);
       foreach (char c in n.ToString ()) {
-         sum += (int)Math.Pow (c - '0', length);
+         sum += (int)Math.Pow (c - '0', len);
       }
       return n == sum;
    }

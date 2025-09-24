@@ -1,5 +1,4 @@
-﻿// ---
----------------------------------------------------------------------------------------------
+﻿// ------------------------------------------------------------------------------------------------
 // Training ~ A training program for new joinees at Metamation, Batch- July 2025.
 // Copyright (c) Metamation India.
 // ------------------------------------------------------------------
@@ -17,7 +16,7 @@ namespace Training_1 {
             Console.WriteLine ("GCD: 0");
             Console.WriteLine ("LCM: 0");
          } else {
-            var (num1, num2) = (n1, n2);
+            var(num1, num2) = (n1,n2);
             int remainder;
             do {
                remainder = n1 % n2;

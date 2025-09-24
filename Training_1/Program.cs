@@ -8,17 +8,15 @@
 namespace Training_1 {
    internal class Program {
       static void Main (string[] args) {
+         Console.WriteLine ("Give a number as input");
          /// <summary>
          /// Converts a decimal number to binary and hexadecimal.
          /// Uses either manual division method or built-in Convert.ToString(number, base).
          /// </summary>
-         int number = 0;
-         Console.WriteLine ("Give a number as input");
-         while (!int.TryParse (Console.ReadLine (), out number)) {
-            Console.WriteLine ("\nThe number is not valid.");
-         }
+         int number;
+         while (!int.TryParse (Console.ReadLine (), out number)) Console.WriteLine ("\nThe number is not valid.");
          // Binary Conversion
-         List<int> binaryRemainders = new ();
+         List<int> binaryRemainders = [];
          int tempNumber = number;
          while (tempNumber > 0) {
             binaryRemainders.Add (tempNumber % 2);
@@ -31,7 +29,7 @@ namespace Training_1 {
             Console.Write (value);
          }
          // Hexadecimal Conversion
-         List<string> hexRemainders = new ();
+         List<string> hexRemainders = [];
          tempNumber = number;
          while (tempNumber > 0) {
             string strRemainder = (tempNumber % 16) switch {

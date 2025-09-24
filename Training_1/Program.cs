@@ -7,10 +7,6 @@
 // ------------------------------------------------------------------------------------------------
 namespace Training_1;
 internal class Program {
-   /// <summary>
-   /// Converts a decimal number to binary and hexadecimal.
-   /// Uses either manual division method or built-in Convert.ToString(number, base).
-   /// </summary>
    static void Main (string[] args) {
       Console.WriteLine ("Give a number as input");
       int n;

@@ -5,13 +5,12 @@
 // Program.cs
 // Program on main branch.
 // ------------------------------------------------------------------------------------------------
-namespace Training_1 {
+namespace Training_1;
    internal class Program {
       static void Main (string[] args) {
-         int number = 0;
          Console.WriteLine ("Enter n (Which Armstrong number do you want) : ");
-         int.TryParse (Console.ReadLine (), out number);
-         FindNthArmstrong (number);
+         int.TryParse (Console.ReadLine (), out int n);
+         FindNthArmstrong (n);
       }
       static void FindNthArmstrong (int nth) {
          int count = 0;
@@ -32,4 +31,4 @@ namespace Training_1 {
          }
       }
    }
-}
+

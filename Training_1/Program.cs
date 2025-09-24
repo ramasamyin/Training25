@@ -5,10 +5,20 @@
 // Program.cs
 // Program on main branch.
 // ------------------------------------------------------------------------------------------------
-namespace Training_1 {
-   internal class Program {
-      static void Main (string[] args) {
-         Console.WriteLine ("Hello, World!");
+using System.Text;
+
+namespace Training_1;
+internal class Program {
+   static void Main (string[] args) {
+      Console.WriteLine ("Enter a string which has to be reversed: ");
+      string word = Console.ReadLine ();
+      char[] chars = word.ToCharArray ();
+      Array.Reverse (chars);
+      for (int i = 0; i < word.Length; i++) {
+         if (char.IsUpper (word[i])) chars[i] = char.ToUpper (chars[i]);
+         else if (char.IsLower (word[i])) chars[i] = char.ToLower (chars[i]);
       }
+      Console.WriteLine (chars);
    }
 }
+

@@ -7,17 +7,17 @@
 // ------------------------------------------------------------------------------------------------
 namespace Training_1;
 internal class Program {
+   /// <summary>
+   /// Converts a decimal number to binary and hexadecimal.
+   /// Uses either manual division method or built-in Convert.ToString(number, base).
+   /// </summary>
    static void Main (string[] args) {
       Console.WriteLine ("Give a number as input");
-      /// <summary>
-      /// Converts a decimal number to binary and hexadecimal.
-      /// Uses either manual division method or built-in Convert.ToString(number, base).
-      /// </summary>
-      int number;
-      while (!int.TryParse (Console.ReadLine (), out number)) Console.WriteLine ("\nThe number is not valid.");
+      int n;
+      while (!int.TryParse (Console.ReadLine (), out n)) Console.WriteLine ("\nThe number is not valid.");
       // Binary Conversion
       List<int> binaries = [];
-      int tmp = number;
+      int tmp = n;
       while (tmp > 0) {
          binaries.Add (tmp % 2);
          tmp /= 2;
@@ -26,7 +26,7 @@ internal class Program {
       string binaryString = string.Join ("", binaries);
       // Hexadecimal Conversion
       List<string> hexaDecimals = [];
-      tmp = number;
+      tmp = n;
       while (tmp > 0) {
          string str = (tmp % 16) switch {
             10 => "A",
@@ -42,9 +42,7 @@ internal class Program {
       }
       hexaDecimals.Reverse ();
       string hexString = string.Join ("", hexaDecimals);
-      Console.WriteLine ($"\nInput: {number}");
-      Console.WriteLine ($"Binary: {binaryString}");
-      Console.WriteLine ($"Hexadecimal: {hexString}");
+      Console.WriteLine ($"\nInput: {n}\nBinary: {binaryString}\nHexadecimal: {hexString}");
    }
 }
 

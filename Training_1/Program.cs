@@ -8,7 +8,7 @@
 namespace Training_1;
    internal class Program {
       static void Main (string[] args) {
-         Console.WriteLine ("Enter n (Which Armstrong number do you want) : ");
+         Console.WriteLine ("Enter n - Which Armstrong number do you want (upto 25) : ");
          int.TryParse (Console.ReadLine (), out int n);
          FindNthArmstrong (n);
       }

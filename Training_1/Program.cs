@@ -10,7 +10,7 @@ internal class Program {
    static void Main (string[] args) {
       Print ("Enter a non-negative number: ");
       int n;
-      while (!int.TryParse (Console.ReadLine (), out n)) { Print ("You have not entered a valid number.\nEnter a number: "); }
+      while (!int.TryParse (Console.ReadLine (), out n)) Print ("You have not entered a valid number.\nEnter a number: ");
       Print (Armstrong (n) ? "Armstrong Number" : "Not an Armstrong Number");
    }
 
@@ -18,9 +18,7 @@ internal class Program {
 
    static bool Armstrong (int n) {
       var (sum, len) = (0, n.ToString ().Length);
-      foreach (char c in n.ToString ()) {
-         sum += (int)Math.Pow (c - '0', len);
-      }
+      foreach (char c in n.ToString ()) sum += (int)Math.Pow (c - '0', len);
       return n == sum;
    }
 }

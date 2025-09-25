@@ -14,14 +14,15 @@ internal class Program {
       Print (Armstrong (n) ? "Armstrong Number" : "Not an Armstrong Number");
    }
 
-   static void Print (string str) => Console.Write (str);
-
    static bool Armstrong (int n) {
       string num = n.ToString ();
       var (sum, len) = (0, num.Length);
       foreach (char c in num) sum += (int)Math.Pow (c - '0', len);
       return n == sum;
    }
+
+   static void Print (string str) => Console.Write (str);
+
 }
 
 

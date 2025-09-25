@@ -22,7 +22,6 @@ internal class Program {
    }
 
    static void Print (string str) => Console.Write (str);
-
 }
 
 

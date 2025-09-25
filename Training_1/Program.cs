@@ -15,9 +15,9 @@ internal class Program {
    }
 
    static bool Armstrong (int n) {
-      string num = n.ToString ();
-      var (sum, len) = (0, num.Length);
-      foreach (char c in num) sum += (int)Math.Pow (c - '0', len);
+      string str = n.ToString ();
+      var (sum, len) = (0, str.Length);
+      foreach (char c in str) sum += (int)Math.Pow (c - '0', len);
       return n == sum;
    }
 

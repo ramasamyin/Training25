@@ -8,23 +8,22 @@
 namespace Training_1 {
    internal class Program {
       static void Main (string[] args) {
-         Console.WriteLine ("Type in a number");
-         int.TryParse (Console.ReadLine (), out int n1);
-         Console.WriteLine ("Type in the second number");
-         int.TryParse (Console.ReadLine (), out int n2);
+         int n1; int n2;
+         Console.Write ("Enter the first number: ");
+         while (!int.TryParse (Console.ReadLine (), out n1)) Console.Write ("The input is not valid.\nEnter another number: ");
+         Console.Write ("Enter the second number: ");
+         while (!int.TryParse (Console.ReadLine (), out n2)) Console.Write ("The input is not valid.\nEnter another number: ");
          if (n1 == 0 || n2 == 0) {
             Console.WriteLine ("GCD: 0");
             Console.WriteLine ("LCM: 0");
          } else {
             var (num1, num2) = (n1, n2);
-            int remainder;
+            int rem;
             do {
-               remainder = n1 % n2;
-               (n1, n2) = (n2, remainder);
-            }
-            while (remainder != 0);
-            Console.WriteLine ($"\nGCD: {n1}");
-            Console.WriteLine ($"LCM: {(num1 * num2) / n1}");
+               rem = n1 % n2;
+               (n1, n2) = (n2, rem);
+            } while (rem != 0);
+            Console.WriteLine ($"\nGCD: {n1}\nLCM: {(num1 * num2) / n1}");
          }
       }
    }

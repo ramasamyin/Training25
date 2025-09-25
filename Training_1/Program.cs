@@ -8,26 +8,23 @@
 namespace Training_1;
 internal class Program {
    static void Main (string[] args) {
-      int n1, n2;
-      Print ("Enter the first number: ");
-      while (!int.TryParse (Console.ReadLine (), out n1)) Print ("The input is not valid.\nEnter another number: ");
-      Print ("Enter the second number: ");
-      while (!int.TryParse (Console.ReadLine (), out n2)) Print ("The input is not valid.\nEnter another number: ");
-      if (n1 == 0 || n2 == 0) {
-         Print ("\nGCD: 0\nLCM: 0");
-      } else {
-         var (num1, num2) = (n1, n2);
-         int rem = -1;
+      GetValidInput ("Enter the first number: ", out int n1);
+      GetValidInput ("Enter the second number: ", out int n2);
+      if (n1 == 0 || n2 == 0) Print ("\nGCD: 0\nLCM: 0");
+      else {
+         var (rem, prod) = (-1, n1 * n2);
          while (rem != 0) {
             rem = n1 % n2;
             (n1, n2) = (n2, rem);
          }
-         ;
-         Print ($"\nGCD: {n1}\nLCM: {(num1 * num2) / n1}");
+         Print ($"\nGCD: {n1}\nLCM: {prod / n1}");
       }
+   }
+
+   static void GetValidInput (string prompt, out int n) {
+      Print (prompt);
+      while (!int.TryParse (Console.ReadLine (), out n)) Print ("Enter a valid input: ");
    }
 
    static void Print (string str) => Console.Write (str);
 }
-
-

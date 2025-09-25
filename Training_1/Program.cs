@@ -20,10 +20,10 @@ internal class Program {
          sb.Insert (0, tmp % 2);
          tmp /= 2;
       }
+      string binary = sb.ToString ();
+      sb.Clear ();
       // Hexadecimal Conversion
       tmp = n;
-      Console.WriteLine ($"\nInput: {n}\nBinary: {sb}");
-      sb.Clear ();
       while (tmp > 0) {
          string str = (tmp % 16) switch {
             10 => "A",
@@ -37,7 +37,7 @@ internal class Program {
          sb.Insert (0, str);
          tmp /= 16;
       }
-      Console.WriteLine ($"Hexadecimal: {sb}");
+      Console.WriteLine ($"\nInput: {n}\nBinary: {binary}\nHexadecimal: {sb.ToString ()}");
    }
 }
 

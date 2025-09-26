@@ -8,16 +8,17 @@
 namespace Training_1;
 internal class Program {
    static void Main (string[] args) {
-      Console.WriteLine ("Enter n - Which Armstrong number do you want (upto 25) : ");
+      Console.Write ("Enter which nth Armstrong number (only upto 25) you would like to find: ");
       int.TryParse (Console.ReadLine (), out int n);
-      Console.WriteLine ($"\nThe {n}th Armstrong Number is {FindNthArmstrong (n)}. ");
+      Console.WriteLine ($"\nThe {n}th Armstrong Number is {NthArmstrong (n)}. ");
    }
 
-   static int FindNthArmstrong (int n) {
-      int count = 0;
+   //Finds the Armstrong Number at a particular position
+   static int NthArmstrong (int n, int count = 0) {
       for (int i = 0; ; i++) if (IsArmstrong (i) && ++count == n) return i;
    }
 
+   //Returns True if the integer is an Armstrong Number
    static bool IsArmstrong (int n) {
       var (sum, len) = (0, n.ToString ().Length);
       for (int i = n; i > 0; i /= 10) sum += (int)Math.Pow (i % 10, len);

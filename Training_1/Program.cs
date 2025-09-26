@@ -5,8 +5,6 @@
 // Program.cs
 // Program on main branch.
 // ------------------------------------------------------------------------------------------------
-using System.Diagnostics.CodeAnalysis;
-
 namespace Training_1;
 internal class Program {
    static void Main (string[] args) {
@@ -15,20 +13,14 @@ internal class Program {
       Console.WriteLine ($"\nThe {n}th Armstrong Number is {FindNthArmstrong (n)}. ");
    }
 
-   //0 is the first Armstrong Number
    static int FindNthArmstrong (int n) {
       int count = 0;
-      for (int i = 0; ; i++) {
-         if (IsArmstrong (i)) {
-            count++;
-            if (count == n) return i;
-         }
-      }
+      for (int i = 0; ; i++) if (IsArmstrong (i) && ++count == n) return i;
    }
 
    static bool IsArmstrong (int n) {
-      int sum = 0;
-      for (int i = n; i > 0; i /= 10) sum += (int)Math.Pow (i % 10, n.ToString ().Length);
+      var (sum, len) = (0, n.ToString ().Length);
+      for (int i = n; i > 0; i /= 10) sum += (int)Math.Pow (i % 10, len);
       return n == sum;
    }
 }

@@ -25,16 +25,16 @@ internal class Program {
       // Hexadecimal Conversion
       tmp = n;
       while (tmp > 0) {
-         string str = (tmp % 16) switch {
-            10 => "A",
-            11 => "B",
-            12 => "C",
-            13 => "D",
-            14 => "E",
-            15 => "F",
-            _ => (tmp % 16).ToString ()
+         char chr = (tmp % 16) switch {
+            10 => 'A',
+            11 => 'B',
+            12 => 'C',
+            13 => 'D',
+            14 => 'E',
+            15 => 'F',
+            _ => (char)(tmp % 16)
          };
-         sb.Insert (0, str);
+         sb.Insert (0, chr);
          tmp /= 16;
       }
       Console.WriteLine ($"\nInput: {n}\nBinary: {binary}\nHexadecimal: {sb.ToString ()}");

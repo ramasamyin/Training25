@@ -12,19 +12,17 @@ internal class Program {
       int.TryParse (Console.ReadLine (), out int n);
       FindNthArmstrong (n);
    }
-   static void FindNthArmstrong (int nth) {
+
+   //0 is included as the first Armstrong Number
+   static void FindNthArmstrong (int n) {
       int count = 0;
-      for (int n1 = 0; ; n1++) {
-         int sum = 0;
-         int length = n1.ToString ().Length;
-         foreach (char c in n1.ToString ()) {
-            int digit = c - '0';
-            sum += (int)Math.Pow (digit, length);
-         }
-         if (n1 == sum) {
+      for (int i = 0; ; i++) {
+         var (sum, len) = (0, i.ToString ().Length);
+         for (int j = i; j > 0; j /= 10) sum += (int)Math.Pow (j % 10, len);
+         if (i == sum) {
             count++;
-            if (count == nth) {
-               Console.WriteLine ($"\nThe Armstrong number - {nth} is {n1}");
+            if (count == n) {
+               Console.WriteLine ($"\nThe {n}th Armstrong number is {i}");
                return;
             }
          }

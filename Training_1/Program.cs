@@ -13,16 +13,16 @@ internal class Program {
       Console.WriteLine ($"\nThe {n}th Armstrong Number is {NthArmstrong (n)}. ");
    }
 
-   //Finds the Armstrong Number at a particular position
-   static int NthArmstrong (int n, int count = 0) {
-      for (int i = 0; ; i++) if (IsArmstrong (i) && ++count == n) return i;
-   }
-
-   //Returns True if the integer is an Armstrong Number
+   //Returns true if the integer is an Armstrong Number
    static bool IsArmstrong (int n) {
       var (sum, len) = (0, n.ToString ().Length);
       for (int i = n; i > 0; i /= 10) sum += (int)Math.Pow (i % 10, len);
       return n == sum;
+   }
+
+   //Returns the armstrong number of the given index.
+   static int NthArmstrong (int n) {
+      for (int i = 0, count = 0; ; i++) if (IsArmstrong (i) && ++count == n) return i;
    }
 }
 

@@ -7,6 +7,7 @@
 // ------------------------------------------------------------------------------------------------
 using static System.Console;
 namespace Training_1;
+
 internal class Program {
    static void Main (string[] args) {
       Write ("Enter a number: ");
@@ -14,7 +15,7 @@ internal class Program {
       while (!int.TryParse (ReadLine (), out n)) WriteLine ("Please enter a valid number");
       while (n >= 10) {
          int sum = 0;
-         for (int i = n; i>0 ; i/=10) sum += (i%10);
+         for (int i = n; i > 0; i /= 10) sum += (i % 10);
          n = sum;
       }
       WriteLine ($"\nThe digital root is {n}");

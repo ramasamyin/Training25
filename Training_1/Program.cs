@@ -3,7 +3,7 @@
 // Copyright (c) Metamation India.
 // ------------------------------------------------------------------
 // Program.cs
-// Program on main branch.
+// Program on T11.1 branch.
 // ------------------------------------------------------------------------------------------------
 namespace Training_1;
 internal class Program {
@@ -20,7 +20,7 @@ internal class Program {
       return n == sum;
    }
 
-   //Returns the armstrong number of the given index.
+   //Returns the armstrong number of the given index
    static int NthArmstrong (int n) {
       for (int i = 0, count = 0; ; i++) if (IsArmstrong (i) && ++count == n) return i;
    }

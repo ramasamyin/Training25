@@ -8,12 +8,12 @@
 namespace Training_1;
 internal class Program {
    static void Main (string[] args) {
-      Console.Write ("Enter which nth Armstrong number (only upto 25) you would like to find: ");
+      Console.Write ("Enter which nth armstrong number (only upto 25) you would like to find: ");
       int.TryParse (Console.ReadLine (), out int n);
-      Console.WriteLine ($"\nThe {n}th Armstrong Number is {NthArmstrong (n)}. ");
+      Console.WriteLine ($"\nThe {n}th armstrong number is {NthArmstrong (n)}. ");
    }
 
-   //Returns true if the integer is an Armstrong Number
+   //Returns true if the integer is an armstrong number
    static bool IsArmstrong (int n) {
       var (sum, len) = (0, n.ToString ().Length);
       for (int i = n; i > 0; i /= 10) sum += (int)Math.Pow (i % 10, len);

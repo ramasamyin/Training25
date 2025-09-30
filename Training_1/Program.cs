@@ -12,13 +12,13 @@ internal class Program {
    static void Main (string[] args) {
       Write ("Enter a number: ");
       int n;
-      while (!int.TryParse (ReadLine (), out n)) WriteLine ("Please enter a valid number");
+      while (!int.TryParse (ReadLine (), out n)) Write ("Please enter a valid number: ");
       while (n >= 10) {
          int sum = 0;
          for (int i = n; i > 0; i /= 10) sum += i % 10;
          n = sum;
       }
-      WriteLine ($"\nThe digital root is {n}");
+      WriteLine ($"The digital root is {n}");
    }
 }
 

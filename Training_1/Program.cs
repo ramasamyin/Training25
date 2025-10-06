@@ -11,7 +11,7 @@ namespace Training_1;
 internal class Program {
    static void Main (string[] args) {
       for (int i = 1; i <= 10; i++) {
-         for (int j = 1; j <= 10; j++) WriteLine ($"{i,2} * {j,2} = {i * j,3}");
+         for (int j = 1; j <= 10; j++) WriteLine ($"{i,2} * {j,2} = {i * j}");
          WriteLine ();
       }
    }

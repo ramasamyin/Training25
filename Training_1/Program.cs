@@ -15,12 +15,15 @@ internal class Program {
    }
 
    static bool IsArmstrong (int n) {
-      var (sum, len) = (0, n.ToString ().Length);
+      var (sum, len) = (0, 0);
+      int temp = n;
+      while (temp > 0) {
+         len++;
+         temp /= 10;
+      }
       for (int i = n; i > 0; i /= 10) sum += (int)Math.Pow (i % 10, len);
       return n == sum;
    }
 
    static void Print (string str) => Console.Write (str);
 }
-
-

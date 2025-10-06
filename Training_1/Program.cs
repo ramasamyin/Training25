@@ -5,14 +5,13 @@
 // Program.cs
 // Program on main branch.
 // ------------------------------------------------------------------------------------------------
-namespace Training_1;
 using static System.Console;
+namespace Training_1;
 
 internal class Program {
    static void Main (string[] args) {
       Write ("Enter the number of rows upto which you wish to print the Pascal's triangle: ");
       int.TryParse (ReadLine (), out int r);
-      WriteLine ($"\nPascal's Triangle for {r} rows ");
       for (int i = 0; i < r; i++) {
          for (int j = 0; j < r - i - 1; j++) Write (" ");
          for (int k = 0; k <= i; k++) Write ($"{Combination (i, k)} ");
@@ -29,4 +28,3 @@ internal class Program {
       return result;
    }
 }
-

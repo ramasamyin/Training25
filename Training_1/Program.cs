@@ -3,7 +3,7 @@
 // Copyright (c) Metamation India.
 // ------------------------------------------------------------------
 // Program.cs
-// Program on main branch.
+// Program on T07 branch.
 // ------------------------------------------------------------------------------------------------
 using static System.Console;
 namespace Training_1;
@@ -19,11 +19,14 @@ internal class Program {
       }
    }
 
-   //Returns the combination value C(n, r)
-   static long Combination (int n, int r) {
+   //Each element in the pascal's triangle is calculated
+   //using the combination formula (nCr), where:
+   //- n is the row number,
+   //- r is the position of the element within the row.
+   static int Combination (int n, int r) {
       if (r > n) return 0;
       if (r == 0 || r == n) return 1;
-      long result = 1;
+      int result = 1;
       for (int i = 1; i <= r; i++) result *= (n - i + 1) / i;
       return result;
    }

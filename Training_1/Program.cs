@@ -15,7 +15,12 @@ internal class Program {
 
    //Returns true if the integer is an armstrong number
    static bool IsArmstrong (int n) {
-      var (sum, len) = (0, n.ToString ().Length);
+      var (sum, len) = (0, 0);
+      int temp = n;
+      while (temp > 0) {
+         len++;
+         temp /= 10;
+      }
       for (int i = n; i > 0; i /= 10) sum += (int)Math.Pow (i % 10, len);
       return n == sum;
    }
@@ -25,4 +30,5 @@ internal class Program {
       for (int i = 0, count = 0; ; i++) if (IsArmstrong (i) && ++count == n) return i;
    }
 }
+
 

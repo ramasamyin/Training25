@@ -14,6 +14,8 @@ internal class Program {
       WriteLine (MinTransform (n));
    }
 
+   //Returns the smallest number of changes it takes to transform a number into a number with identical digits
+   //by incrementing or decrementing a digit by one.
    static int MinTransform (int num) {
       int minSum = int.MaxValue;
       for (int k = 0; k < 10; k++) {

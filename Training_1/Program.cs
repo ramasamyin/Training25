@@ -13,9 +13,9 @@ internal class Program {
       Write ("Enter the number of rows upto which you wish to print the Pascal's triangle: ");
       int.TryParse (ReadLine (), out int r);
       for (int i = 0; i < r; i++) {
-         for (int j = 0; j < r - i - 1; j++) Write (" ");
+         Write (new string (' ', r - i - 1));
          for (int k = 0; k <= i; k++) Write ($"{Combination (i, k)} ");
-         WriteLine ("");
+         WriteLine ();
       }
    }
 

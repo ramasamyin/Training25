@@ -14,7 +14,7 @@ internal class Program {
       int.TryParse (ReadLine (), out int r);
       for (int i = 0; i < r; i++) {
          Write (new string (' ', r - i - 1));
-         for (int k = 0; k <= i; k++) Write ($"{Combination (i, k)} ");
+         for (int j = 0; j <= i; j++) Write ($"{Combination (i, j)} ");
          WriteLine ();
       }
    }

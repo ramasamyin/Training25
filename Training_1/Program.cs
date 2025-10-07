@@ -22,7 +22,6 @@ internal class Program {
    //Each element in the pascal's triangle is calculated using the combination formula (nCr)
    //where,n is the row number and r is the position of the element within the row
    static int Combination (int n, int r) {
-      if (r == 0) return 1;
       int result = 1;
       for (int i = 1; i <= r; i++) result = result * (n - i + 1) / i;
       return result;

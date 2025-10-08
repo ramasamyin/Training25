@@ -3,7 +3,7 @@
 // Copyright (c) Metamation India.
 // ------------------------------------------------------------------
 // Program.cs
-// Program on main branch.
+// Program on T10 branch.
 // ------------------------------------------------------------------------------------------------
 using System.Text;
 
@@ -14,12 +14,24 @@ internal class Program {
       string? word = Console.ReadLine ();
       if (!string.IsNullOrEmpty (word)) {
          char[] chars = word.ToCharArray ();
-         Array.Reverse (chars);
-         for (int i = 0; i < word.Length; i++) {
-            if (char.IsUpper (word[i])) chars[i] = char.ToUpper (chars[i]);
-            else if (char.IsLower (word[i])) chars[i] = char.ToLower (chars[i]);
+         char[] result = new char[chars.Length];
+         int j = chars.Length - 1;
+         for (int i = 0; i < chars.Length; i++) {
+            if (chars[i] == ' ') result[i] = ' ';
          }
-         Console.WriteLine (chars);
+         for (int i = 0; i < chars.Length; i++) {
+            if (chars[i] != ' ') {
+               while (j >= 0 && result[j] == ' ') j--;
+               result[j] = chars[i];
+               j--;
+            }
+
+         }
+         for (int i = 0; i < chars.Length; i++) {
+            if (char.IsUpper (word[i])) result[i] = char.ToUpper (result[i]);
+            else if (char.IsLower (word[i])) result[i] = char.ToLower (result[i]);
+         }
+         Console.WriteLine (result);
       } else Console.WriteLine ("No input provided.");
    }
 }

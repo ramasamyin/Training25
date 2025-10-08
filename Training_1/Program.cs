@@ -6,8 +6,8 @@
 // Program on T10 branch.
 // ------------------------------------------------------------------------------------------------
 using System.Text;
-
 namespace Training_1;
+
 internal class Program {
    static void Main (string[] args) {
       Console.WriteLine ("Enter a string which has to be reversed: ");
@@ -25,7 +25,6 @@ internal class Program {
                result[j] = chars[i];
                j--;
             }
-
          }
          for (int i = 0; i < chars.Length; i++) {
             if (char.IsUpper (word[i])) result[i] = char.ToUpper (result[i]);

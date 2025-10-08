@@ -14,16 +14,16 @@ internal class Program {
       int.TryParse (ReadLine (), out int r);
       for (int i = 0; i < r; i++) {
          Write (new string (' ', r - i - 1));
-         for (int j = 0; j <= i; j++) Write ($"{Combination (i, j)} ");
+         for (int j = 0; j <= i; j++) Write ($"{GetPosValue (i, j)} ");
          WriteLine ();
       }
    }
 
-   //Each element in the pascal's triangle is calculated using the combination formula (nCr)
-   //where,n is the row number and r is the position of the element within the row
-   static int Combination (int n, int r) {
+   // Each element in the pascal's triangle is calculated using the combination formula (nCr)
+   // where,r is the row number and n is the position of the element within the row
+   static int GetPosValue (int r, int n) {
       int result = 1;
-      for (int i = 1; i <= r; i++) result = result * (n - i + 1) / i;
+      for (int i = 1; i <= n; i++) result = result * (r - i + 1) / i;
       return result;
    }
 }

@@ -6,12 +6,13 @@
 // Program on T10 branch.
 // ------------------------------------------------------------------------------------------------
 using System.Text;
+using static System.Console;
 namespace Training_1;
 
 internal class Program {
    static void Main (string[] args) {
-      Console.WriteLine ("Enter a string which has to be reversed: ");
-      string? word = Console.ReadLine ();
+      WriteLine ("Enter a string which has to be reversed: ");
+      string? word = ReadLine ();
       if (!string.IsNullOrEmpty (word)) {
          char[] chars = word.ToCharArray ();
          char[] result = new char[chars.Length];
@@ -30,8 +31,9 @@ internal class Program {
             if (char.IsUpper (word[i])) result[i] = char.ToUpper (result[i]);
             else if (char.IsLower (word[i])) result[i] = char.ToLower (result[i]);
          }
-         Console.WriteLine (result);
-      } else Console.WriteLine ("No input provided.");
+         WriteLine (result);
+      } else WriteLine ("No input provided.");
    }
 }
+
 

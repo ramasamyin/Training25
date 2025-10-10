@@ -21,11 +21,11 @@ internal class Program {
             if (chars[i] == ' ') result[i] = ' ';
             else {
                while (j >= 0 && word[j] == ' ') j--;
-               result[j] = chars[i];
+               char ch = chars[j];
+               result[i] = char.IsUpper (word[i]) ? char.ToUpper (ch) : char.ToLower (ch);
                j--;
             }
          }
-         for (int i = 0; i < len; i++) result[i] = char.IsUpper (word[i]) ? char.ToUpper (result[i]) : char.ToLower (result[i]);
          WriteLine (result);
       } else WriteLine ("Empty string");
    }

@@ -20,9 +20,8 @@ internal class Program {
             if (chars[i] == ' ') result[i] = ' ';
             else {
                while (j >= 0 && word[j] == ' ') j--;
-               char ch = chars[j];
+               char ch = chars[j--];
                result[i] = char.IsUpper (word[i]) ? char.ToUpper (ch) : char.ToLower (ch);
-               j--;
             }
          }
          WriteLine (result);

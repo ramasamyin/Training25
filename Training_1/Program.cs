@@ -17,21 +17,19 @@ internal class Program {
          int len = chars.Length;
          char[] result = new char[len];
          int j = len - 1;
-         for (int i = 0; i < len; i++) if (chars[i] == ' ') result[i] = ' ';
          for (int i = 0; i < len; i++) {
-            if (chars[i] != ' ') {
-               while (j >= 0 && result[j] == ' ') j--;
+            if (chars[i] == ' ') result[i] = ' ';
+            else {
+               while (j >= 0 && word[j] == ' ') j--;
                result[j] = chars[i];
                j--;
             }
          }
-         for (int i = 0; i < len; i++) {
-            if (char.IsUpper (word[i])) result[i] = char.ToUpper (result[i]);
-            else result[i] = char.ToLower (result[i]);
-         }
+         for (int i = 0; i < len; i++) result[i] = char.IsUpper (word[i]) ? char.ToUpper (result[i]) : char.ToLower (result[i]);
          WriteLine (result);
-      } else WriteLine ("No input provided.");
+      } else WriteLine ("Empty string");
    }
 }
+
 
 

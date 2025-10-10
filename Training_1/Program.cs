@@ -16,8 +16,7 @@ internal class Program {
          char[] chars = word.ToCharArray ();
          int len = chars.Length;
          char[] result = new char[len];
-         int j = len - 1;
-         for (int i = 0; i < len; i++) {
+         for (int i = 0, j = len - 1; i < len; i++) {
             if (chars[i] == ' ') result[i] = ' ';
             else {
                while (j >= 0 && word[j] == ' ') j--;

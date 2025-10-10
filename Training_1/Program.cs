@@ -17,7 +17,7 @@ internal class Program {
          int len = chars.Length;
          char[] result = new char[len];
          for (int i = 0, j = len - 1; i < len; i++) {
-            if (chars[i] == ' ') result[i] = ' ';
+            if (Char.IsWhiteSpace (chars[i])) result[i] = ' ';
             else {
                while (j >= 0 && word[j] == ' ') j--;
                char ch = chars[j--];

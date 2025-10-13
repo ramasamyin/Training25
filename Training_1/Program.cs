@@ -5,12 +5,13 @@
 // Program.cs
 // Program on T09 branch.
 // ------------------------------------------------------------------------------------------------
+using static System.Console;
 namespace Training_1;
 
 internal class Program {
    static void Main (string[] args) {
-      Console.WriteLine ("Enter a string for which adjacent matching letters must be deleted ");
-      string? word = Console.ReadLine ()?.ToLower ();
+      Write ("Enter a string for which adjacent matching letters must be deleted: ");
+      string? word = ReadLine ()?.ToLower ();
       Stack<char> st = new ();
       if (!string.IsNullOrEmpty (word)) {
          foreach (char c in word) {
@@ -18,10 +19,10 @@ internal class Program {
             else st.Push (c);
          }
          var Arr = st.ToArray ();
-         Array.Reverse (Arr);
-         if (Arr.Length != 0) {
-            Console.Write ($"\nOutput: " + new string (Arr));
-         } else Console.WriteLine ($"Output: Empty string ");
-      } else Console.WriteLine ("Enter a valid input");
+         if (Arr.Length != 0) for (int i = Arr.Length - 1; i >= 0; i--) Write ($"Output: {Arr[i]}");
+         else WriteLine ("Output: Empty string ");
+      } else WriteLine ("Enter a valid input");
    }
 }
+
+

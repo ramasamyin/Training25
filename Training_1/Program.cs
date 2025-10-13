@@ -17,9 +17,9 @@ internal class Program {
          int len = chars.Length;
          char[] result = new char[len];
          for (int i = 0, j = len - 1; i < len; i++) {
-            if (Char.IsWhiteSpace (chars[i])) result[i] = ' ';
+            if (char.IsWhiteSpace (chars[i])) result[i] = ' ';
             else {
-               while (j >= 0 && word[j] == ' ') j--;
+               while (j >= 0 && char.IsWhiteSpace (word[j])) j--;
                char ch = chars[j--];
                result[i] = char.IsUpper (word[i]) ? char.ToUpper (ch) : char.ToLower (ch);
             }
@@ -28,6 +28,4 @@ internal class Program {
       } else WriteLine ("Empty string");
    }
 }
-
-
 

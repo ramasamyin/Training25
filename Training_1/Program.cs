@@ -6,6 +6,7 @@
 // Program on T09 branch.
 // ------------------------------------------------------------------------------------------------
 namespace Training_1;
+
 internal class Program {
    static void Main (string[] args) {
       Console.WriteLine ("Enter a string for which adjacent matching letters must be deleted ");

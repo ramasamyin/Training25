@@ -12,11 +12,10 @@ internal class Program {
    static void Main () {
       Write ("Enter a string: ");
       string? str = ReadLine ();
-      if (string.IsNullOrEmpty (str) || str.Any (char.IsDigit)) WriteLine ("Input should not be empty and should not contain digits.");
-      else {
+      if (!string.IsNullOrEmpty (str) && str.Any (char.IsLetter)) {
          FindWinner (str.ToUpper (), out char winner, out int maxVotes);
          WriteLine ($"{winner},{maxVotes}");
-      }
+      } else WriteLine ("Input should not be empty and should not contain digits.");
    }
 
    // Returns the winner and the no of votes received by the winner by counting the no of times each element appears
@@ -25,7 +24,7 @@ internal class Program {
       List<int> noOfVotes = [];
       foreach (char c in votes) noOfVotes.Add ((votes.Count (a => a == c)));
       maxVotes = noOfVotes.Max ();
-      winner = votes[maxVotes];
+      winner = votes[noOfVotes.IndexOf (maxVotes)];
    }
 }
 

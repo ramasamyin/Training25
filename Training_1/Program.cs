@@ -19,7 +19,7 @@ internal class Program {
             if (index > 0 && result[index - 1] == c) index--;
             else result[index++] = c;
          }
-         Console.WriteLine ($"Output: {(index > 0 ? new string (result, 0, index) : "Empty string")}");
+         WriteLine ($"Output: {(index > 0 ? new string (result, 0, index) : "Empty string")}");
       } else WriteLine ("Enter a valid input");
    }
 }

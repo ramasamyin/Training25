@@ -3,26 +3,29 @@
 // Copyright (c) Metamation India.
 // ------------------------------------------------------------------
 // Program.cs
-// Program on main branch.
+// Program on T12 branch.
 // ------------------------------------------------------------------------------------------------
-namespace Training_1 {
-   internal class Program {
-      static void Main (string[] args) {
-         Console.Write ("Enter an input: ");
-         string? input = Console.ReadLine ();
-         if (String.IsNullOrEmpty (input)) Console.WriteLine ("No input is entered");
-         else {
-            FindWinner (input.ToUpper (), out char winner, out int wVotes);
-            Console.WriteLine ($"{winner},{wVotes}");
-         }
+using static System.Console;
+namespace Training_1;
 
-      }
-
-      static void FindWinner (string votes, out char winner, out int wVotes) {
-         List<int> myInts = [];
-         foreach (char c in votes) myInts.Add ((votes.Count (a => a == c)));
-         wVotes = myInts.Max ();
-         winner = votes[wVotes];
+internal class Program {
+   static void Main () {
+      Write ("Enter an input: ");
+      string? str = ReadLine ();
+      if (String.IsNullOrEmpty (str)) WriteLine ("No input is entered");
+      else {
+         FindWinner (str.ToUpper (), out char winner, out int wVotes);
+         WriteLine ($"{winner},{wVotes}");
       }
    }
+
+   // Returns the winner and the number of votes received by the winner
+   // by counting the no of times each element appears in the str ,stores it in a list and applies Max() on the list
+   static void FindWinner (string votes, out char winner, out int wVotes) {
+      List<int> myInts = [];
+      foreach (char c in votes) myInts.Add ((votes.Count (a => a == c)));
+      wVotes = myInts.Max ();
+      winner = votes[wVotes];
+   }
 }
+

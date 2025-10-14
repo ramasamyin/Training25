@@ -11,16 +11,15 @@ namespace Training_1;
 internal class Program {
    static void Main () {
       Write ("Enter a string for which adjacent matching letters must be deleted: ");
-      string? word = ReadLine ()?.ToLower ();
-      if (!string.IsNullOrEmpty (word)) {
+      string? str = ReadLine ()?.ToLower ();
+      if (!string.IsNullOrEmpty (str)) {
          int index = 0;
-         var result = new char[word.Length];
-         foreach (char c in word) {
+         var result = new char[str.Length];
+         foreach (char c in str) {
             if (index > 0 && result[index - 1] == c) index--;
             else result[index++] = c;
          }
-         if (result.Length > 0) WriteLine ($"Output: {new string (result, 0, index)}");
-         else WriteLine ("Empty string");
+         Console.WriteLine ($"Output: {(index > 0 ? new string (result, 0, index) : "Empty string")}");
       } else WriteLine ("Enter a valid input");
    }
 }

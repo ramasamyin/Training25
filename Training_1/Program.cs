@@ -12,7 +12,7 @@ internal class Program {
    static void Main () {
       Write ("Enter an input: ");
       string? str = ReadLine ();
-      if (String.IsNullOrEmpty (str)) WriteLine ("No input is entered");
+      if (string.IsNullOrEmpty (str)) WriteLine ("No input is entered");
       else {
          FindWinner (str.ToUpper (), out char winner, out int maxVotes);
          WriteLine ($"{winner},{maxVotes}");

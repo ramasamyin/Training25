@@ -11,19 +11,18 @@ namespace Training_1;
 
 internal class Program {
    static void Main () {
-      StringBuilder sb = new ();
+      StringBuilder errors = new ();
       Write ("Enter an input: ");
       string? input = ReadLine ();
-      char[] spl = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+'];
+      char[] splChars = "!@#$%^&*()-+".ToCharArray ();
       if (string.IsNullOrEmpty (input)) WriteLine ("Input is empty");
       else {
-         if (input.Length < 6) Append (sb, "The length must be atleast 6.");
-         if (!input.Any (char.IsDigit)) Append (sb, "It must contain atleast one digit.");
-         if (!input.Any (char.IsUpper)) Append (sb, "It must contain atleast one Uppercase letter.");
-         if (!input.Any (char.IsLower)) Append (sb, "It must contain atleast one Lowercase letter.");
-         if (!spl.Any (s => input.Contains (s))) Append (sb, "It must contain atleast one special character (!@#$%^&*()-+).");
-         if (sb.Length > 0) WriteLine ($"The password is not strong.\n{sb}");
-         else WriteLine ("Password is strong");
+         if (input.Length < 6) Append (errors, "The length must be atleast 6.");
+         if (!input.Any (char.IsDigit)) Append (errors, "It must contain atleast one digit.");
+         if (!input.Any (char.IsUpper)) Append (errors, "It must contain atleast one Uppercase letter.");
+         if (!input.Any (char.IsLower)) Append (errors, "It must contain atleast one Lowercase letter.");
+         if (!splChars.Any (s => input.Contains (s))) Append (errors, "It must contain atleast one special character (!@#$%^&*()-+).");
+         WriteLine (errors.Length > 0 ? $"The password is not strong.\n{errors}" : "Password is strong");
       }
    }
 

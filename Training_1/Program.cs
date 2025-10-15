@@ -12,14 +12,14 @@ internal class Program {
    static void Main () {
       Write ("Enter a string: ");
       string? str = ReadLine ();
-      if (!string.IsNullOrEmpty (str) && str.Any (char.IsLetter)) {
+      if (!string.IsNullOrEmpty (str) && str.All (char.IsLetter)) {
          FindWinner (str.ToUpper (), out char winner, out int maxVotes);
          WriteLine ($"{winner},{maxVotes}");
       } else WriteLine ("Input should not be empty and should only contain alphabets.");
    }
 
    // Finds the winner and the no of votes received by the winner by counting the no of times each element appears
-   // in the str, stores it in a list and applies Max() on the list
+   // in the string, stores it in a list and applies Max() on the list
    static void FindWinner (string votes, out char winner, out int maxVotes) {
       List<int> noOfVotes = [];
       foreach (char c in votes) noOfVotes.Add ((votes.Count (a => a == c)));

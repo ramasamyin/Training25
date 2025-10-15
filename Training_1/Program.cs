@@ -23,8 +23,7 @@ internal class Program {
       Dictionary<char, int> voteCounts = [];
       (maxVotes, winner) = (0, ' ');
       foreach (char c in votes) {
-         if (voteCounts.TryGetValue (c, out int value)) voteCounts[c] = ++value;
-         else voteCounts[c] = 1;
+         voteCounts[c] = voteCounts.TryGetValue (c, out int value) ? ++value : 1;
          if (voteCounts[c] > maxVotes) {
             maxVotes = voteCounts[c];
             winner = c;

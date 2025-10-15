@@ -15,10 +15,10 @@ internal class Program {
       if (!string.IsNullOrEmpty (str) && str.Any (char.IsLetter)) {
          FindWinner (str.ToUpper (), out char winner, out int maxVotes);
          WriteLine ($"{winner},{maxVotes}");
-      } else WriteLine ("Input should not be empty and should not contain digits.");
+      } else WriteLine ("Input should not be empty and should only contain alphabets.");
    }
 
-   // Returns the winner and the no of votes received by the winner by counting the no of times each element appears
+   // Finds the winner and the no of votes received by the winner by counting the no of times each element appears
    // in the str, stores it in a list and applies Max() on the list
    static void FindWinner (string votes, out char winner, out int maxVotes) {
       List<int> noOfVotes = [];
@@ -27,4 +27,3 @@ internal class Program {
       winner = votes[noOfVotes.IndexOf (maxVotes)];
    }
 }
-

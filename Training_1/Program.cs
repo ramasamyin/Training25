@@ -24,10 +24,7 @@ internal class Program {
       (maxVotes, winner) = (0, ' ');
       foreach (char c in votes) {
          voteCounts[c] = voteCounts.TryGetValue (c, out int value) ? ++value : 1;
-         if (voteCounts[c] > maxVotes) {
-            maxVotes = voteCounts[c];
-            winner = c;
-         }
+         if (voteCounts[c] > maxVotes) (maxVotes, winner) = (voteCounts[c], c);
       }
    }
 }

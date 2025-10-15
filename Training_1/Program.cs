@@ -18,17 +18,18 @@ internal class Program {
       } else WriteLine ("Input should not be empty and should only contain alphabets.");
    }
 
-   // Finds the winner and the no of votes received by the winner by counting the no of times each element appears
-   // in the string
+   // Determines the character with the highest number of votes from a given string
    static void FindWinner (string votes, out char winner, out int maxVotes) {
-      List<int> noOfVotes = [];
-      foreach (char c in votes) noOfVotes.Add ((votes.Count (a => a == c)));
+      Dictionary<char, int> voteCounts = [];
       (maxVotes, winner) = (0, ' ');
-      for (int i = 0; i < votes.Length; i++) {
-         if (noOfVotes[i] > maxVotes) {
-            maxVotes = noOfVotes[i];
-            winner = votes[i];
+      foreach (char c in votes) {
+         if (voteCounts.TryGetValue (c, out int value)) voteCounts[c] = ++value;
+         else voteCounts[c] = 1;
+         if (voteCounts[c] > maxVotes) {
+            maxVotes = voteCounts[c];
+            winner = c;
          }
       }
    }
 }
+

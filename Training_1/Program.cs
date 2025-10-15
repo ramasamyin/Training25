@@ -23,7 +23,12 @@ internal class Program {
    static void FindWinner (string votes, out char winner, out int maxVotes) {
       List<int> noOfVotes = [];
       foreach (char c in votes) noOfVotes.Add ((votes.Count (a => a == c)));
-      maxVotes = noOfVotes.Max ();
-      winner = votes[noOfVotes.IndexOf (maxVotes)];
+      (maxVotes, winner) = (0, ' ');
+      for (int i = 0; i < votes.Length; i++) {
+         if (noOfVotes[i] > maxVotes) {
+            maxVotes = noOfVotes[i];
+            winner = votes[i];
+         }
+      }
    }
 }

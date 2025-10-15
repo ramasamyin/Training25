@@ -19,7 +19,7 @@ internal class Program {
    }
 
    // Finds the winner and the no of votes received by the winner by counting the no of times each element appears
-   // in the string, stores it in a list and applies Max() on the list
+   // in the string
    static void FindWinner (string votes, out char winner, out int maxVotes) {
       List<int> noOfVotes = [];
       foreach (char c in votes) noOfVotes.Add ((votes.Count (a => a == c)));

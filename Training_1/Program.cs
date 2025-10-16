@@ -18,17 +18,16 @@ internal class Program {
       if (string.IsNullOrEmpty (input)) WriteLine ("Input is empty");
       else {
          if (input.Length < 6) Append (errors, "The length must be atleast 6.");
-         bool hasDigit = false, hasUpper = false, hasLower = false, hasSpecial = false;
+         if (!splChars.Any (s => input.Contains (s))) Append (errors, "It must contain at least one special character (!@#$%^&*()-+).");
+         bool hasDigit = false, hasUpper = false, hasLower = false;
          foreach (char c in input) {
             if (char.IsDigit (c)) hasDigit = true;
             else if (char.IsUpper (c)) hasUpper = true;
             else if (char.IsLower (c)) hasLower = true;
-            else if (splChars.Any (s => input.Contains (s))) hasSpecial = true;
          }
          if (!hasDigit) Append (errors, "It must contain at least one digit.");
          if (!hasLower) Append (errors, "It must contain at least one lowercase letter.");
          if (!hasUpper) Append (errors, "It must contain at least one uppercase letter.");
-         if (!hasSpecial) Append (errors, "It must contain at least one special character (!@#$%^&*()-+).");
          WriteLine (errors.Length > 0 ? $"The password is not strong.\n{errors}" : "Password is strong");
       }
    }

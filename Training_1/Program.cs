@@ -17,24 +17,25 @@ internal class Program {
       char[] splChars = "!@#$%^&*()-+".ToCharArray ();
       if (string.IsNullOrEmpty (input)) WriteLine ("Input is empty");
       else {
-         if (input.Length < 6) Append (errors, "The length must be atleast 6.");
-         if (!splChars.Any (input.Contains)) Append (errors, "It must contain at least one special character (!@#$%^&*()-+).");
+         if (input.Length < 6) Append ("The length must be atleast 6.");
+         if (!splChars.Any (input.Contains)) Append ("It must contain at least one special character (!@#$%^&*()-+).");
          bool hasDigit = false, hasUpper = false, hasLower = false;
          foreach (char c in input) {
             if (char.IsDigit (c)) hasDigit = true;
             else if (char.IsUpper (c)) hasUpper = true;
             else if (char.IsLower (c)) hasLower = true;
          }
-         if (!hasDigit) Append (errors, "It must contain at least one digit.");
-         if (!hasLower) Append (errors, "It must contain at least one lowercase letter.");
-         if (!hasUpper) Append (errors, "It must contain at least one uppercase letter.");
+         if (!hasDigit) Append ("It must contain at least one digit.");
+         if (!hasLower) Append ("It must contain at least one lowercase letter.");
+         if (!hasUpper) Append ("It must contain at least one uppercase letter.");
          WriteLine (errors.Length > 0 ? $"The password is not strong.\n{errors}" : "Password is strong");
 
          // Adds the string to a string builder
-         static void Append (StringBuilder sb, string str) => sb.AppendLine (str);
+         void Append (string str) => errors.AppendLine (str);
       }
    }
 }
+
 
 
 

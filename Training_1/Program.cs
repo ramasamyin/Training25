@@ -12,13 +12,13 @@ namespace Training_1;
 internal class Program {
    static void Main () {
       StringBuilder errors = new ();
-      Write ("Enter an input: ");
+      Write ("Enter a password: ");
       string? input = ReadLine ();
       char[] splChars = "!@#$%^&*()-+".ToCharArray ();
       if (string.IsNullOrEmpty (input)) WriteLine ("Input is empty");
       else {
          if (input.Length < 6) Append (errors, "The length must be atleast 6.");
-         if (!splChars.Any (s => input.Contains (s))) Append (errors, "It must contain at least one special character (!@#$%^&*()-+).");
+         if (!splChars.Any (input.Contains)) Append (errors, "It must contain at least one special character (!@#$%^&*()-+).");
          bool hasDigit = false, hasUpper = false, hasLower = false;
          foreach (char c in input) {
             if (char.IsDigit (c)) hasDigit = true;
@@ -29,11 +29,11 @@ internal class Program {
          if (!hasLower) Append (errors, "It must contain at least one lowercase letter.");
          if (!hasUpper) Append (errors, "It must contain at least one uppercase letter.");
          WriteLine (errors.Length > 0 ? $"The password is not strong.\n{errors}" : "Password is strong");
+
+         // Adds the string to a string builder
+         static void Append (StringBuilder sb, string str) => sb.AppendLine (str);
       }
    }
-
-   // Adds the string to a string builder
-   static void Append (StringBuilder sb, string str) => sb.AppendLine (str);
 }
 
 

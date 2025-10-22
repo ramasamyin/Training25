@@ -24,9 +24,11 @@ internal class Program {
       int[] values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
       string[] symbols = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
       string roman = "";
-      for (int i = 0; i < values.Length; i++) {
-         while (input >= values[i]) {
-            input -= values[i];
+      int len = values.Length;
+      for (int i = 0; i < len; i++) {
+         int value = values[i];
+         while (input >= value) {
+            input -= value;
             roman += symbols[i];
          }
       }
@@ -50,11 +52,13 @@ internal class Program {
                word += tens[value / 10] + " ";
                if (value % 10 != 0) word += ones[value % 10] + " ";
             }
-            if (places[i] != "") word += places[i] + " ";
+            string place = places[i];
+            if (place != "") word += place + " ";
          }
          input %= divisors[i];
       }
       WriteLine ($"Number (in words): {word.Trim ().ToUpper ()}");
    }
 }
+
 

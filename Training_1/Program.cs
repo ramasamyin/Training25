@@ -6,35 +6,48 @@
 // Program on T02 branch.
 // ------------------------------------------------------------------------------------------------
 using static System.Console;
+using System.Text;
 namespace Training_1;
 
 internal class Program {
-   private static readonly int[] RomanValues = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
-   private static readonly string[] RomanSymbols = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
-   private static readonly string[] Ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-   private static readonly string[] Teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
-   private static readonly string[] Tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-   private static readonly string[] Places = ["crore", "lakh", "thousand", "hundred", ""];
-   private static readonly int[] Divisors = [10000000, 100000, 1000, 100, 1];
+   static Dictionary<int, string> romanMap = new () {
+      [1000] = "M", [900] = "CM", [500] = "D", [400] = "CD", [100] = "C", [90] = "XC", [50] = "L", [40] = "XL", [10] = "X", [9] = "IX", [5] = "V", [4] = "IV", [1] = "I"
+   };
+   static Dictionary<int, string> placeByDivisor = new () {
+      [10000000] = "crore", [100000] = "lakh", [1000] = "thousand", [100] = "hundred", [1] = ""
+   };
+   static string[] Ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+   static string[] Teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+   static string[] Tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 
    static void Main () {
       Write ("Enter a number: ");
       int.TryParse (ReadLine (), out int input);
       Write ("Enter 'r' for roman numeral and 'w' for word conversion: ");
-      char.TryParse (ReadLine (), out char choice);
-      if (choice == 'r') ConvertToRoman (input);
-      else if (choice == 'w') ConvertToWord (input);
-      else WriteLine ("Invalid choice");
+      string? choiceStr = ReadLine ()?.Trim ().ToLower ();
+      char choice = string.IsNullOrEmpty (choiceStr) ? '\0' : choiceStr[0];
+      switch (choice) {
+         case 'r':
+            ConvertToRoman (input);
+            break;
+         case 'w':
+            ConvertToWord (input);
+            break;
+         default:
+            WriteLine ("Invalid choice");
+            break;
+      }
    }
 
    //Converts the given input number into roman numeral and prints it to the console
    static void ConvertToRoman (int input) {
-      string roman = "";
-      for (int i = 0, len = RomanValues.Length; i < len; i++) {
-         int value = RomanValues[i];
+      var roman = new StringBuilder ();
+      foreach (var kv in romanMap) {
+         int value = kv.Key;
+         string symbol = kv.Value;
          while (input >= value) {
             input -= value;
-            roman += RomanSymbols[i];
+            roman.Append (symbol);
          }
       }
       WriteLine ($"Roman numeral: {roman}");
@@ -42,23 +55,58 @@ internal class Program {
 
    // Converts the given input number into words and prints it to the console
    static void ConvertToWord (int input) {
-      string word = "";
-      for (int i = 0, len = Divisors.Length; i < len; i++) {
-         int value = input / Divisors[i];
+      List<string> parts = [];
+      foreach (var kv in placeByDivisor) {
+         int divisor = kv.Key;
+         string place = kv.Value;
+         int value = input / divisor;
          if (value != 0) {
-            if (value < 10) word += Ones[value] + " ";
-            else if (value < 20) word += Teens[value - 10] + " ";
-            else if (value < 100) {
-               word += Tens[value / 10] + " ";
-               if (value % 10 != 0) word += Ones[value % 10] + " ";
+            switch (value) {
+               case < 10:
+                  parts.Add (Ones[value]);
+                  break;
+               case < 20:
+                  parts.Add (Teens[value - 10]);
+                  break;
+               case < 100: {
+                     string t = Tens[value / 10];
+                     if (!string.IsNullOrEmpty (t)) parts.Add (t);
+                     if (value % 10 != 0) parts.Add (Ones[value % 10]);
+                     break;
+                  }
+               default: {
+                     int hundreds = value / 100;
+                     if (hundreds != 0) {
+                        parts.Add (Ones[hundreds]);
+                        parts.Add ("hundred");
+                     }
+                     int rem = value % 100;
+                     if (rem != 0) {
+                        switch (rem) {
+                           case < 10:
+                              parts.Add (Ones[rem]);
+                              break;
+                           case < 20:
+                              parts.Add (Teens[rem - 10]);
+                              break;
+                           default: {
+                                 string t = Tens[rem / 10];
+                                 if (!string.IsNullOrEmpty (t)) parts.Add (t);
+                                 if (rem % 10 != 0) parts.Add (Ones[rem % 10]);
+                                 break;
+                              }
+                        }
+                     }
+                     break;
+                  }
             }
-            string place = Places[i];
-            if (place != "") word += place + " ";
+
+            if (!string.IsNullOrEmpty (place)) parts.Add (place);
          }
-         input %= Divisors[i];
+         input %= divisor;
       }
-      WriteLine ($"Number (in words): {word.Trim ().ToUpper ()}");
+      string word = string.Join (" ", parts).Trim ().ToUpper ();
+      WriteLine ($"Number (in words): {word}");
    }
 }
-
 

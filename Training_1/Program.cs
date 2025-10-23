@@ -10,16 +10,6 @@ using System.Text;
 namespace Training_1;
 
 internal class Program {
-   static Dictionary<int, string> romanMap = new () {
-      [1000] = "M", [900] = "CM", [500] = "D", [400] = "CD", [100] = "C", [90] = "XC", [50] = "L", [40] = "XL", [10] = "X", [9] = "IX", [5] = "V", [4] = "IV", [1] = "I"
-   };
-   static Dictionary<int, string> placeByDivisor = new () {
-      [10000000] = "crore", [100000] = "lakh", [1000] = "thousand", [100] = "hundred", [1] = ""
-   };
-   static string[] Ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-   static string[] Teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
-   static string[] Tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-
    static void Main () {
       Write ("Enter a number: ");
       int.TryParse (ReadLine (), out int input);
@@ -28,10 +18,10 @@ internal class Program {
       char choice = string.IsNullOrEmpty (choiceStr) ? '\0' : choiceStr[0];
       switch (choice) {
          case 'r':
-            ConvertToRoman (input);
+            WriteLine ($"Roman numeral: {ConvertToRoman (input)}");
             break;
          case 'w':
-            ConvertToWord (input);
+            WriteLine ($"Number in words: {ConvertToWord (input)}");
             break;
          default:
             WriteLine ("Invalid choice");
@@ -40,21 +30,23 @@ internal class Program {
    }
 
    //Converts the given input number into roman numeral and prints it to the console
-   static void ConvertToRoman (int input) {
+   static string ConvertToRoman (int input) {
       var roman = new StringBuilder ();
+      string romanNum = string.Empty;
       foreach (var kv in romanMap) {
          int value = kv.Key;
          string symbol = kv.Value;
          while (input >= value) {
             input -= value;
             roman.Append (symbol);
+            romanNum = roman.ToString ();
          }
       }
-      WriteLine ($"Roman numeral: {roman}");
+      return romanNum;
    }
 
    // Converts the given input number into words and prints it to the console
-   static void ConvertToWord (int input) {
+   static string ConvertToWord (int input) {
       List<string> parts = [];
       foreach (var kv in placeByDivisor) {
          int divisor = kv.Key;
@@ -106,7 +98,16 @@ internal class Program {
          input %= divisor;
       }
       string word = string.Join (" ", parts).Trim ().ToUpper ();
-      WriteLine ($"Number (in words): {word}");
+      return word;
    }
+   static Dictionary<int, string> romanMap = new () {
+      [1000] = "M", [900] = "CM", [500] = "D", [400] = "CD", [100] = "C", [90] = "XC", [50] = "L", [40] = "XL", [10] = "X", [9] = "IX", [5] = "V", [4] = "IV", [1] = "I"
+   };
+   static Dictionary<int, string> placeByDivisor = new () {
+      [10000000] = "crore", [100000] = "lakh", [1000] = "thousand", [100] = "hundred", [1] = ""
+   };
+   static string[] Ones = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+   static string[] Teens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+   static string[] Tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 }
 

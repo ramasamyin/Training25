@@ -18,6 +18,7 @@ internal class Program {
    // absolute difference between each digit and the target digit
    static int MinTransform (int n) {
       int minSum = int.MaxValue;
+      // iterate target digits 0..9 (decimal digits)
       for (int i = 0; i < 10; i++) {
          var (sum, temp) = (0, n);
          while (temp > 0) {

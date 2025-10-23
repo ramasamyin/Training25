@@ -11,19 +11,18 @@ namespace Training_1;
 internal class Program {
    static void Main () {
       Write ("Enter a number: ");
-      int.TryParse (ReadLine (), out int n);
-      WriteLine (MinTransform (n));
+      WriteLine (int.TryParse (ReadLine (), out int n) ? MinTransform (n) : "Invalid input");
    }
 
    // Function to calculate the minimum transformation cost by changing all digits to a single digit by calculating the
    // absolute difference between each digit and the target digit
-   static int MinTransform (int num) {
+   static int MinTransform (int n) {
       int minSum = int.MaxValue;
-      for (int k = 0; k < 10; k++) {
-         var (sum, temp) = (0, num);
+      for (int i = 0; i < 10; i++) {
+         var (sum, temp) = (0, n);
          while (temp > 0) {
             int digit = temp % 10;
-            sum += Math.Abs (digit - k);
+            sum += Math.Abs (digit - i);
             temp /= 10;
          }
          if (sum < minSum) minSum = sum;

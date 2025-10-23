@@ -16,10 +16,11 @@ internal class Program {
    }
 
    // Function to calculate the minimum transformation cost by changing all digits to a single digit by calculating the
-   // absolute difference between each digit and the target digit.
+   // absolute difference between each digit and the target digit
    static int MinTransform (int num) {
       int minSum = int.MaxValue;
-      for (int k = 0, temp = num, sum = 0; k < 10; k++) {
+      for (int k = 0; k < 10; k++) {
+         var (sum, temp) = (0, num);
          while (temp > 0) {
             int digit = temp % 10;
             sum += Math.Abs (digit - k);

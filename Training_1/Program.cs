@@ -23,7 +23,7 @@ internal class Program {
    }
 
    #region implementation -------------------------------------------
-   //Converts the given input number into roman numeral and prints it to the console
+   //Converts the given input number into roman numeral and returns it as string
    static string ConvertToRoman (int n) {
       var roman = new StringBuilder ();
       foreach (var kv in sRomanMap) {
@@ -37,7 +37,7 @@ internal class Program {
       return roman.ToString ();
    }
 
-   // Converts the given input number into words and prints it to the console
+   // Converts the given input number into words and returns it as string
    static string ConvertToWord (int n) {
       List<string> parts = [];
       foreach (var kv in sPlaceByDivisor) {

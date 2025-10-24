@@ -25,54 +25,68 @@ internal class Program {
    #region implementation -------------------------------------------
    //Converts the given input number into roman numeral and returns it as string
    static string ConvertToRoman (int n) {
+      if (n <= 0) return string.Empty;
       var roman = new StringBuilder ();
-      foreach (var kv in sRomanMap) {
-         int value = kv.Key;
-         string symbol = kv.Value;
-         while (n >= value) {
-            n -= value;
-            roman.Append (symbol);
-         }
-      }
+      int thousands = n / 1000;
+      if (thousands > 0) roman.Append ('M', thousands);
+      int h = (n % 1000) / 100;
+      int t = (n % 100) / 10;
+      int o = n % 10;
+      roman.Append (sRomanHundreds[h]);
+      roman.Append (sRomanTens[t]);
+      roman.Append (sRomanOnes[o]);
       return roman.ToString ();
    }
 
    // Converts the given input number into words and returns it as string
    static string ConvertToWord (int n) {
+      if (n == 0) return "ZERO";
+      int input = Math.Abs (n);
       List<string> parts = [];
-      foreach (var kv in sPlaceByDivisor) {
-         int divisor = kv.Key;
-         string place = kv.Value;
-         int value = n / divisor;
-         if (value != 0) {
-            switch (value) {
-               case < 10: parts.Add (sOnes[value]); break;
-               case < 20: parts.Add (sTeens[value - 10]); break;
-               case < 100: {
-                     string t = sTens[value / 10];
-                     if (!string.IsNullOrEmpty (t)) parts.Add (t);
-                     if (value % 10 != 0) parts.Add (sOnes[value % 10]);
-                     break;
-                  }
-            }
-            if (!string.IsNullOrEmpty (place)) parts.Add (place);
-         }
-         n %= divisor;
+      // helper for values 0..99
+      static string TwoDigit (int v) {
+         if (v == 0) return string.Empty;
+         if (v < 10) return sOnes[v];
+         if (v < 20) return sTeens[v - 10];
+         int tensVal = v / 10;
+         int onesVal = v % 10;
+         return string.IsNullOrEmpty (sTens[tensVal]) ? sOnes[onesVal] : (sTens[tensVal] + (onesVal != 0 ? " " + sOnes[onesVal] : ""));
       }
-      return string.Join (" ", parts).Trim ().ToUpper (); ;
+      foreach (int divisor in sdivisors) {
+         int value = input / divisor;
+         if (value != 0) {
+            if (divisor == 100) {
+               parts.Add (sOnes[value]);
+               parts.Add ("hundred");
+            } else if (divisor == 1) {
+               string two = TwoDigit (value);
+               if (!string.IsNullOrEmpty (two)) parts.Add (two);
+            } else {
+               string two = TwoDigit (value);
+               if (!string.IsNullOrEmpty (two)) parts.Add (two);
+               string place = sPlaceByDivisor.TryGetValue (divisor, out string? places) ? places : string.Empty;
+               if (!string.IsNullOrEmpty (place)) parts.Add (place);
+            }
+         }
+         input %= divisor;
+      }
+      string result = string.Join (" ", parts).Trim ().ToUpper ();
+      return n < 0 ? ("MINUS " + result) : result;
    }
    #endregion
 
    #region Fields ---------------------------------------------------
-   static Dictionary<int, string> sRomanMap = new () {
-      [1000] = "M", [900] = "CM", [500] = "D", [400] = "CD", [100] = "C", [90] = "XC", [50] = "L", [40] = "XL", [10] = "X", [9] = "IX", [5] = "V", [4] = "IV", [1] = "I"
-   };
    static Dictionary<int, string> sPlaceByDivisor = new () {
       [(int)1E5] = "lakh", [(int)1E3] = "thousand", [100] = "hundred", [1] = ""
    };
+   static int[] sdivisors = { 100000, 1000, 100, 1 };
    static string[] sOnes = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
    static string[] sTeens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
    static string[] sTens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+   static string sRomanThousands = "M";
+   static string[] sRomanHundreds = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+   static string[] sRomanTens = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+   static string[] sRomanOnes = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
    #endregion
 }
 #endregion

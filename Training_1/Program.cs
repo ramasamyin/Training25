@@ -27,14 +27,9 @@ internal class Program {
    static string ConvertToRoman (int n) {
       if (n <= 0) return string.Empty;
       var roman = new StringBuilder ();
-      int thousands = n / 1000;
-      if (thousands > 0) roman.Append ('M', thousands);
-      int h = (n % 1000) / 100;
-      int t = (n % 100) / 10;
-      int o = n % 10;
-      roman.Append (sRomanHundreds[h]);
-      roman.Append (sRomanTens[t]);
-      roman.Append (sRomanOnes[o]);
+      int[] digits = { n / 1000, (n % 1000) / 100, (n % 100) / 10, n % 10 };
+      string[][] arrays = { sRomanThousands, sRomanHundreds, sRomanTens, sRomanOnes };
+      for (int i = 0; i < digits.Length; i++) roman.Append (arrays[i][digits[i]]);
       return roman.ToString ();
    }
 
@@ -83,7 +78,7 @@ internal class Program {
    static string[] sOnes = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
    static string[] sTeens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
    static string[] sTens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-   static string sRomanThousands = "M";
+   static string[] sRomanThousands = { "", "M", "MM", "MMM" };
    static string[] sRomanHundreds = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
    static string[] sRomanTens = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
    static string[] sRomanOnes = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };

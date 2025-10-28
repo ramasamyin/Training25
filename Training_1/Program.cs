@@ -20,7 +20,7 @@ internal class Program {
 
    // Function to calculate the minimum transformation cost by changing all digits to a single digit by calculating the
    // absolute difference between each digit and the target digit
-   static (int minSum, string convertedNumber) MinTransform (int n) {
+   static (int MinSum, string ConvertedNumber) MinTransform (int n) {
       HashSet<int> uniqueDigits = [];
       List<int> digits = [];
       int temp = n;
@@ -33,10 +33,7 @@ internal class Program {
       foreach (int target in uniqueDigits) {
          int sum = 0;
          foreach (int digit in digits) sum += Math.Abs (digit - target);
-         if (sum < minSum) {
-            minSum = sum;
-            bestTarget = target;
-         }
+         if (sum < minSum) (minSum, bestTarget) = (sum, target);
       }
       return (minSum, new string (bestTarget.ToString ()[0], n.ToString ().Length));
    }

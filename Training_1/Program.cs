@@ -8,7 +8,7 @@
 namespace Training_1;
 
 internal class Program {
-   static void Main (string[] args) {
+   static void Main () {
       int[] row1 = [.. Console.ReadLine ()!.Split (' ').Select (int.Parse)];
       int[] row2 = [.. Console.ReadLine ()!.Split (' ').Select (int.Parse)];
       int[] row3 = [.. Console.ReadLine ()!.Split (' ').Select (int.Parse)];

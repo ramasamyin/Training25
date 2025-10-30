@@ -22,11 +22,12 @@ internal class Program {
    // absolute difference between each digit and the target digit
    static (int MinSum, string ConvertedNumber) MinTransform (int n) {
       HashSet<int> uniqueDigits = [];
-      List<int> digits = [];
+      List<int> digits = new (10);
       int temp = n;
       while (temp > 0) {
-         uniqueDigits.Add (temp % 10);
-         digits.Add (temp % 10);
+         int rem = temp % 10;
+         uniqueDigits.Add (rem);
+         digits.Add (rem);
          temp /= 10;
       }
       int minSum = int.MaxValue, bestTarget = 0;

@@ -20,7 +20,7 @@ internal class Program {
 
    // Function to calculate the minimum transformation cost by changing all digits to a single digit by calculating the
    // absolute difference between each digit and the target digit
-   static (int MinSum, int bestTarget) MinTransform (int n) {
+   static (int MinSum, int BestTarget) MinTransform (int n) {
       HashSet<int> uniqueDigits = [];
       List<int> digits = new (10);
       int temp = n;

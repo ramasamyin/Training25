@@ -30,13 +30,12 @@ internal class Program {
          digits.Add (rem);
          temp /= 10;
       }
-      int minSum = int.MaxValue, bestTarget = 0;
+      int minSum = int.MaxValue, bestTarget = 0, nLength = (int)Math.Floor (Math.Log10 (n)) + 1;
       foreach (int target in uniqueDigits) {
          int sum = 0;
          foreach (int digit in digits) sum += Math.Abs (digit - target);
          if (sum < minSum) (minSum, bestTarget) = (sum, target);
       }
-      return (minSum, new string (bestTarget.ToString ()[0], n.ToString ().Length));
+      return (minSum, new string (bestTarget.ToString ()[0], nLength));
    }
 }
-

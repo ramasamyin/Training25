@@ -13,7 +13,8 @@ internal class Program {
    static void Main () {
       OutputEncoding = new UnicodeEncoding ();
       const int BoardSize = 8;
-      char[] whitePieces = { '\u2656', '\u2658', '\u2657', '\u2655', '\u2654', '\u2657', '\u2658', '\u2656' }, blackPieces = { '\u265C', '\u265E', '\u265D', '\u265B', '\u265A', '\u265D', '\u265E', '\u265C' };
+      char[] whitePieces = { '\u2656', '\u2658', '\u2657', '\u2655', '\u2654', '\u2657', '\u2658', '\u2656' },
+      blackPieces = { '\u265C', '\u265E', '\u265D', '\u265B', '\u265A', '\u265D', '\u265E', '\u265C' };
       char whitePawn = '\u2659', blackPawn = '\u265F';
       char[,] board = new char[BoardSize, BoardSize];
       for (int i = 0; i < BoardSize; i++) {

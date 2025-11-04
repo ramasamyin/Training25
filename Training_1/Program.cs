@@ -23,12 +23,11 @@ internal class Program {
    static (int MinSum, int BestTarget) MinTransform (int n) {
       HashSet<int> uniqueDigits = [];
       List<int> digits = new (10);
-      int temp = n;
-      while (temp > 0) {
-         int rem = temp % 10;
+      while (n > 0) {
+         int rem = n % 10;
          uniqueDigits.Add (rem);
          digits.Add (rem);
-         temp /= 10;
+         n /= 10;
       }
       int minSum = int.MaxValue, bestTarget = 0;
       foreach (int target in uniqueDigits) {

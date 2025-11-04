@@ -6,6 +6,7 @@
 // Program on T04 branch.
 // ------------------------------------------------------------------------------------------------
 using System.Text;
+using static System.Console;
 namespace Training_1;
 
 internal class Program {
@@ -24,13 +25,13 @@ internal class Program {
             else board[i, j] = ' ';
          }
       }
-      Console.WriteLine ("┌────┬────┬────┬────┬────┬────┬────┬────┐");
+      WriteLine ("┌────┬────┬────┬────┬────┬────┬────┬────┐");
       for (int i = 0; i < 8; i++) {
-         Console.Write ("│");
-         for (int j = 0; j < 8; j++) Console.Write ($" {board[i, j]}  │");
-         Console.WriteLine ();
-         if (i < 7) Console.WriteLine ("├────┼────┼────┼────┼────┼────┼────┼────┤");
+         Write ("│");
+         for (int j = 0; j < 8; j++) Write ($" {board[i, j]}  │");
+         WriteLine ();
+         if (i < 7) WriteLine ("├────┼────┼────┼────┼────┼────┼────┼────┤");
       }
-      Console.WriteLine ("└────┴────┴────┴────┴────┴────┴────┴────┘");
+      WriteLine ("└────┴────┴────┴────┴────┴────┴────┴────┘");
    }
 }

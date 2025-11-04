@@ -13,8 +13,7 @@ internal class Program {
       Console.OutputEncoding = new UnicodeEncoding ();
       char[] whitePieces = { '\u2656', '\u2658', '\u2657', '\u2655', '\u2654', '\u2657', '\u2658', '\u2656' };
       char[] blackPieces = { '\u265C', '\u265E', '\u265D', '\u265B', '\u265A', '\u265D', '\u265E', '\u265C' };
-      char whitePawn = '\u2659';
-      char blackPawn = '\u265F';
+      char whitePawn = '\u2659', blackPawn = '\u265F';
       char[,] board = new char[8, 8];
       for (int i = 0; i < 8; i++) {
          for (int j = 0; j < 8; j++) board[i, j] = ' ';

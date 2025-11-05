@@ -18,34 +18,33 @@ internal class Program {
       }
       char[] arr = [.. input.Split (',').Select (char.Parse)];
       Write ("Enter special character: ");
-      string? specialInput = ReadLine ();
-      if (string.IsNullOrWhiteSpace (specialInput) || specialInput.Length != 1) {
+      string? splCharInput = ReadLine ();
+      if (string.IsNullOrWhiteSpace (splCharInput) || splCharInput.Length != 1) {
          WriteLine ("Invalid special character input");
          return;
       }
-      char special = specialInput[0];
+      char splChar = splCharInput[0];
       Write ("Enter order ('ascending' or 'descending'), press Enter for default: ");
       string? order = ReadLine ();
       if (string.IsNullOrWhiteSpace (order)) order = "ascending";
-      Sort (ref arr, special, order);
+      Sort (ref arr, splChar, order);
       WriteLine ($"Sorted output: {string.Join (',', arr)}");
    }
 
    // Sorts the array such that all occurrences of special character are at the end
-   static void Sort (ref char[] A, char S, string O = "ascending") {
-      if (A == null || A.Length == 0) {
+   static void Sort (ref char[] arr, char splChar, string order = "ascending") {
+      if (arr == null || arr.Length == 0) {
          WriteLine ("Array is empty");
          return;
       }
-      if (!char.IsLetter (S)) {
+      if (!char.IsLetter (splChar)) {
          WriteLine ("Special character must be an alphabet");
          return;
       }
-      char special = char.ToLower (S);
-      var sorted = (O.Equals ("descending")) ? A.OrderByDescending (c => char.ToLower (c)).ToArray () : [.. A.OrderBy (c => char.ToLower (c))];
-      var notSpl = sorted.Where (c => char.ToLower (c) != special).ToList ();
-      var splChars = sorted.Where (c => char.ToLower (c) == special).ToList ();
-      A = [.. notSpl, .. splChars];
+      var sorted = (order.Equals ("descending")) ? arr.OrderByDescending (c => char.ToLower (c)).ToArray () : [.. arr.OrderBy (c => char.ToLower (c))];
+      var notSpl = sorted.Where (c => char.ToLower (c) != Char.ToLower (splChar)).ToList ();
+      var splChars = sorted.Where (c => char.ToLower (c) == splChar).ToList ();
+      arr = [.. notSpl, .. splChars];
    }
 }
 

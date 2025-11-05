@@ -3,33 +3,32 @@
 // Copyright (c) Metamation India.
 // ------------------------------------------------------------------
 // Program.cs
-// Program on main branch.
+// Program on T13 branch.
 // ------------------------------------------------------------------------------------------------
 using static System.Console;
 namespace Training_1;
 
 internal class Program {
    static void Main () {
-      WriteLine ("Enter letters separated by comma");
+      Write ("Enter letters separated by comma: ");
       string? input = ReadLine ();
       if (string.IsNullOrWhiteSpace (input)) {
          WriteLine ("Input cannot be empty");
          return;
       }
       char[] arr = [.. input.Split (',').Select (char.Parse)];
-      WriteLine ("Enter special character");
+      Write ("Enter special character: ");
       string? specialInput = ReadLine ();
       if (string.IsNullOrWhiteSpace (specialInput) || specialInput.Length != 1) {
          WriteLine ("Invalid special character input");
          return;
       }
       char special = specialInput[0];
-      WriteLine ("Enter order (ascending or descending), press Enter for default");
+      Write ("Enter order ('ascending' or 'descending'), press Enter for default: ");
       string? order = ReadLine ();
       if (string.IsNullOrWhiteSpace (order)) order = "ascending";
       Sort (ref arr, special, order);
       WriteLine ($"Sorted output: {string.Join (',', arr)}");
-
    }
 
    // Sorts the array such that all occurrences of special character are at the end
@@ -47,7 +46,6 @@ internal class Program {
       var notSpl = sorted.Where (c => char.ToLower (c) != special).ToList ();
       var splChars = sorted.Where (c => char.ToLower (c) == special).ToList ();
       A = [.. notSpl, .. splChars];
-
    }
 }
 

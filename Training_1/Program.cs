@@ -26,11 +26,10 @@ internal class Program {
       }
       char splChar = char.ToLower (splChars[0]);
       Write ("Enter order 'a' for (ascending) or 'd' for (descending), press Enter for default (ascending): ");
-      string? orderInput = ReadLine ()?.Trim ().ToLower ();
-      SortOrder order = string.IsNullOrWhiteSpace (orderInput) || orderInput != "d" ? SortOrder.Ascending
-                        : SortOrder.Descending;
+      char orderInput = char.ToLower (ReadKey ().KeyChar);
+      SortOrder order = orderInput != 'd' ? SortOrder.Ascending: SortOrder.Descending;
       Sort (ref arr, splChar, order);
-      WriteLine ($"Sorted output: {string.Join (',', arr)}");
+      WriteLine ($"\nSorted output: {string.Join (',', arr)}");
    }
 
    // Sorts the array such that all occurrences of special character are at the end

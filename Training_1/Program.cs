@@ -17,14 +17,14 @@ internal class Program {
          WriteLine ("Input cannot be empty");
          return;
       }
-      char[] arr = [.. input.Split (',').Select (char.Parse)];
+      char[] arr = [.. (input.Split (',').Select (s => char.ToLower (char.Parse (s))))];
       Write ("Enter special character: ");
       string? splCharInput = ReadLine ();
       if (string.IsNullOrWhiteSpace (splCharInput) || splCharInput.Length != 1 || !char.IsLetter (splCharInput[0])) {
          WriteLine ("Invalid special character input");
          return;
       }
-      char splChar = splCharInput[0];
+      char splChar = char.ToLower (splCharInput[0]);
       Write ("Enter order ('ascending' or 'descending'), press Enter for default: ");
       string? orderInput = ReadLine ()?.Trim ().ToLower ();
       SortOrder order = string.IsNullOrWhiteSpace (orderInput) || orderInput != "descending" ? SortOrder.Ascending
@@ -35,12 +35,14 @@ internal class Program {
 
    // Sorts the array such that all occurrences of special character are at the end
    static void Sort (ref char[] arr, char splChar, SortOrder order) {
-      var sorted = (order.Equals (SortOrder.Descending) ? arr.OrderByDescending (c => char.ToLower (c)) :
-                   arr.OrderBy (c => char.ToLower (c))).ToArray ();
-      var notSpl = sorted.Where (c => char.ToLower (c) != char.ToLower (splChar)).ToList ();
-      var splChars = sorted.Where (c => char.ToLower (c) == splChar).ToList ();
+      var sorted = (order.Equals (SortOrder.Descending) ? arr.OrderByDescending (c => c) :
+                   arr.OrderBy (c => c)).ToArray ();
+      var notSpl = sorted.Where (c => c != splChar).ToList ();
+      var splChars = sorted.Where (c => c == splChar).ToList ();
       arr = [.. notSpl, .. splChars];
    }
 }
+
+
 
 

@@ -8,8 +8,8 @@
 using static System.Console;
 namespace Training_1;
 
+enum SortOrder { Ascending, Descending }
 internal class Program {
-   enum SortOrder { Ascending, Descending }
    static void Main () {
       Write ("Enter letters separated by comma: ");
       string? input = ReadLine ();
@@ -17,17 +17,17 @@ internal class Program {
          WriteLine ("Input cannot be empty");
          return;
       }
-      char[] arr = [.. (input.Split (',').Select (s => char.ToLower (char.Parse (s))))];
+      char[] arr = [.. input.Split (',').Select (s => char.ToLower (char.Parse (s)))];
       Write ("Enter special character: ");
-      string? splCharInput = ReadLine ();
-      if (string.IsNullOrWhiteSpace (splCharInput) || splCharInput.Length != 1 || !char.IsLetter (splCharInput[0])) {
+      string? splChars = ReadLine ();
+      if (string.IsNullOrWhiteSpace (splChars) || splChars.Length != 1 || !char.IsLetter (splChars[0])) {
          WriteLine ("Invalid special character input");
          return;
       }
-      char splChar = char.ToLower (splCharInput[0]);
-      Write ("Enter order ('ascending' or 'descending'), press Enter for default: ");
+      char splChar = char.ToLower (splChars[0]);
+      Write ("Enter order 'a' for (ascending) or 'd' for (descending), press Enter for default (ascending): ");
       string? orderInput = ReadLine ()?.Trim ().ToLower ();
-      SortOrder order = string.IsNullOrWhiteSpace (orderInput) || orderInput != "descending" ? SortOrder.Ascending
+      SortOrder order = string.IsNullOrWhiteSpace (orderInput) || orderInput != "d" ? SortOrder.Ascending
                         : SortOrder.Descending;
       Sort (ref arr, splChar, order);
       WriteLine ($"Sorted output: {string.Join (',', arr)}");

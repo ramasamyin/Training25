@@ -26,8 +26,7 @@ internal class Program {
       }
       char splChar = char.ToLower (splChars[0]);
       Write ("Enter order 'a' for (ascending) or 'd' for (descending), press Enter for default (ascending): ");
-      char orderInput = char.ToLower (ReadKey ().KeyChar);
-      SortOrder order = orderInput != 'd' ? SortOrder.Ascending: SortOrder.Descending;
+      SortOrder order = (ReadKey ().Key == ConsoleKey.D) ? SortOrder.Descending : SortOrder.Ascending;
       Sort (ref arr, splChar, order);
       WriteLine ($"\nSorted output: {string.Join (',', arr)}");
    }

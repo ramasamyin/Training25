@@ -15,11 +15,12 @@ internal class Program {
       Write ("Enter a number: ");
       int.TryParse (ReadLine (), out int n);
       Write ("Enter 'r' for roman numeral and 'w' for word conversion: ");
-      string? str = ReadLine ()?.Trim ().ToLower ();
-      char choice = string.IsNullOrEmpty (str) ? '\0' : str[0];
-      if (choice == 'r') WriteLine ($"Roman numeral: {ConvertToRoman (n)}");
-      else if (choice == 'w') WriteLine ($"Number in words: {ConvertToWord (n)}");
+      char choice = char.ToLower(ReadKey().KeyChar);
+      if (choice == 'r') WriteLine ($"\nRoman numeral: {ConvertToRoman (n)}");
+      else if (choice == 'w') WriteLine ($"\nNumber in words: {ConvertToWord (n)}");
       else WriteLine ("Invalid choice");
+      WriteLine ("\nPress any key to exit...");
+      ReadKey ();
    }
 
    #region implementation -------------------------------------------
@@ -39,12 +40,12 @@ internal class Program {
       int input = Math.Abs (n);
       List<string> parts = [];
       // helper for values 0..99
-      static string TwoDigit (int v) {
-         if (v == 0) return string.Empty;
-         if (v < 10) return sOnes[v];
-         if (v < 20) return sTeens[v - 10];
-         int tensVal = v / 10;
-         int onesVal = v % 10;
+      static string TwoDigit (int val) {
+         if (val == 0) return string.Empty;
+         if (val < 10) return sOnes[val];
+         if (val < 20) return sTeens[val - 10];
+         int tensVal = val / 10;
+         int onesVal = val % 10;
          return string.IsNullOrEmpty (sTens[tensVal]) ? sOnes[onesVal] : (sTens[tensVal] + (onesVal != 0 ? " " + sOnes[onesVal] : ""));
       }
       foreach (int divisor in sdivisors) {
@@ -66,7 +67,7 @@ internal class Program {
          input %= divisor;
       }
       string result = string.Join (" ", parts).Trim ().ToUpper ();
-      return n < 0 ? ("MINUS " + result) : result;
+      return result;
    }
    #endregion
 

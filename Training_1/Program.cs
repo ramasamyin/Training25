@@ -15,12 +15,10 @@ internal class Program {
       Write ("Enter a number: ");
       int.TryParse (ReadLine (), out int n);
       Write ("Enter 'r' for roman numeral and 'w' for word conversion: ");
-      char choice = char.ToLower(ReadKey().KeyChar);
+      char choice = char.ToLower (ReadKey ().KeyChar);
       if (choice == 'r') WriteLine ($"\nRoman numeral: {ConvertToRoman (n)}");
       else if (choice == 'w') WriteLine ($"\nNumber in words: {ConvertToWord (n)}");
       else WriteLine ("Invalid choice");
-      WriteLine ("\nPress any key to exit...");
-      ReadKey ();
    }
 
    #region implementation -------------------------------------------

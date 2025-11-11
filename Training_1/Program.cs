@@ -19,6 +19,8 @@ internal class Program {
       if (choice == 'r') WriteLine ($"\nRoman numeral: {ConvertToRoman (n)}");
       else if (choice == 'w') WriteLine ($"\nNumber in words: {ConvertToWord (n)}");
       else WriteLine ("Invalid choice");
+      WriteLine ("Press any key to exit...");
+      Console.ReadKey ();
    }
 
    #region implementation -------------------------------------------
@@ -34,38 +36,35 @@ internal class Program {
 
    // Converts the given input number into words and returns it as string
    static string ConvertToWord (int n) {
-      if (n == 0) return "ZERO";
-      int input = Math.Abs (n);
       List<string> parts = [];
-      // helper for values 0..99
-      static string TwoDigit (int val) {
-         if (val == 0) return string.Empty;
-         if (val < 10) return sOnes[val];
-         if (val < 20) return sTeens[val - 10];
-         int tensVal = val / 10;
-         int onesVal = val % 10;
-         return string.IsNullOrEmpty (sTens[tensVal]) ? sOnes[onesVal] : (sTens[tensVal] + (onesVal != 0 ? " " + sOnes[onesVal] : ""));
-      }
       foreach (int divisor in sdivisors) {
-         int value = input / divisor;
-         if (value != 0) {
-            if (divisor == 100) {
-               parts.Add (sOnes[value]);
-               parts.Add ("hundred");
-            } else if (divisor == 1) {
-               string two = TwoDigit (value);
-               if (!string.IsNullOrEmpty (two)) parts.Add (two);
-            } else {
-               string two = TwoDigit (value);
-               if (!string.IsNullOrEmpty (two)) parts.Add (two);
-               string place = sPlaceByDivisor.TryGetValue (divisor, out string? places) ? places : string.Empty;
-               if (!string.IsNullOrEmpty (place)) parts.Add (place);
-            }
+         int value = n / divisor;
+         if (value == 0) continue;
+         if (divisor == 100) {
+            parts.Add (sOnes[value]);
+            parts.Add ("hundred");
+         } else {
+            string two = TwoDigit (value);
+            if (!string.IsNullOrEmpty (two)) parts.Add (two);
+            string place = sPlaceByDivisor.TryGetValue (divisor, out string? places) ? places : string.Empty;
+            if (!string.IsNullOrEmpty (place)) parts.Add (place);
          }
-         input %= divisor;
+         n %= divisor;
       }
       string result = string.Join (" ", parts).Trim ().ToUpper ();
       return result;
+   }
+
+   // Converts a two digit number into words and returns it as string
+   static string TwoDigit (int val) {
+      return val switch {
+         0 => string.Empty,
+         < 10 => sOnes[val],
+         < 20 => sTeens[val - 10],
+         _ => string.IsNullOrEmpty (sTens[val / 10])
+                ? sOnes[val % 10]
+                : sTens[val / 10] + (val % 10 != 0 ? " " + sOnes[val % 10] : "")
+      };
    }
    #endregion
 

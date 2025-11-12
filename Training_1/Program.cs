@@ -30,7 +30,7 @@ internal class Program {
       var roman = new StringBuilder ();
       int[] digits = { n / 1000, (n % 1000) / 100, (n % 100) / 10, n % 10 };
       string[][] arrays = { sRomanThousands, sRomanHundreds, sRomanTens, sRomanOnes };
-      for (int i = 0; i < digits.Length; i++) roman.Append (arrays[i][digits[i]]);
+      for (int i = 0, len = digits.Length; i < len; i++) roman.Append (arrays[i][digits[i]]);
       return roman.ToString ();
    }
 
@@ -46,8 +46,7 @@ internal class Program {
          } else {
             string two = TwoDigit (value);
             if (!string.IsNullOrEmpty (two)) parts.Add (two);
-            string place = sPlaceByDivisor.TryGetValue (divisor, out string? places) ? places : string.Empty;
-            if (!string.IsNullOrEmpty (place)) parts.Add (place);
+            if (sPlaceByDivisor.TryGetValue (divisor, out var place) && !string.IsNullOrEmpty (place)) parts.Add (place);
          }
          n %= divisor;
       }
@@ -55,15 +54,15 @@ internal class Program {
       return result;
    }
 
-   // Converts a two digit number into words and returns it as string
-   static string TwoDigit (int val) {
-      return val switch {
+   // Converts a two digit number into words
+   static string TwoDigit (int n) {
+      return n switch {
          0 => string.Empty,
-         < 10 => sOnes[val],
-         < 20 => sTeens[val - 10],
-         _ => string.IsNullOrEmpty (sTens[val / 10])
-                ? sOnes[val % 10]
-                : sTens[val / 10] + (val % 10 != 0 ? " " + sOnes[val % 10] : "")
+         < 10 => sOnes[n],
+         < 20 => sTeens[n - 10],
+         _ => string.IsNullOrEmpty (sTens[n / 10])
+                ? sOnes[n % 10]
+                : sTens[n / 10] + (n % 10 != 0 ? " " + sOnes[n % 10] : "")
       };
    }
    #endregion

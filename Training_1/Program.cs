@@ -24,12 +24,11 @@ internal class Program {
    #region Implementation -------------------------------------------
    //Converts the given input number into roman numeral
    static string ConvertToRoman (int n) {
-      if (n <= 0) return string.Empty;
       var roman = new StringBuilder ();
-      for (int i = 0; i < values.Length; i++) {
-         while (n >= values[i]) {
-            roman.Append (symbols[i]);
-            n -= values[i];
+      for (int i = 0, len = sValues.Length; i < len; i++) {
+         while (n >= sValues[i]) {
+            roman.Append (sSymbols[i]);
+            n -= sValues[i];
          }
       }
       return roman.ToString ();
@@ -41,8 +40,8 @@ internal class Program {
       foreach (int divisor in sdivisors) {
          int value = n / divisor;
          if (value == 0) continue;
-         string two = Convert0To99 (value);
-         if (!string.IsNullOrEmpty (two)) parts.Add (two);
+         string number = Convert0To99 (value);
+         if (!string.IsNullOrEmpty (number)) parts.Add (number);
          if (sPlaceByDivisor.TryGetValue (divisor, out var place)) parts.Add (place);
          n %= divisor;
       }
@@ -50,7 +49,7 @@ internal class Program {
       return result;
    }
 
-   // Converts a two digit number into words
+   // Converts numbers from 0 to 99 into words
    static string Convert0To99 (int n) {
       return n switch {
          0 => string.Empty,
@@ -69,8 +68,9 @@ internal class Program {
    static string[] sOnes = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
    static string[] sTeens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
    static string[] sTens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-   static int[] values = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
-   static string[] symbols = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+   static int[] sValues = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+   static string[] sSymbols = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
    #endregion
 }
 #endregion
+

@@ -25,7 +25,8 @@ internal class Program {
    //Converts the given input number into roman numeral
    static string ConvertToRoman (int n) {
       var roman = new StringBuilder ();
-      for (int i = 0, len = sValues.Length, value = sValues[i]; i < len; i++) {
+      for (int i = 0, len = sValues.Length; i < len; i++) {
+         int value = sValues[i];
          while (n >= value) {
             roman.Append (sSymbols[i]);
             n -= value;
@@ -34,7 +35,7 @@ internal class Program {
       return roman.ToString ();
    }
 
-   // Converts the given input number into words
+   // Converts the given number into words
    static string ConvertToWord (int n) {
       List<string> parts = [];
       foreach (int divisor in sdivisors) {

@@ -9,6 +9,7 @@ using static System.Console;
 namespace Training_1;
 
 enum SortOrder { Ascending, Descending }
+
 internal class Program {
    static void Main () {
       Write ("Enter letters separated by comma: ");
@@ -33,8 +34,8 @@ internal class Program {
 
    // Sorts the array such that all occurrences of special character are at the end
    static void Sort (ref char[] arr, char splChar, SortOrder order) {
-      var sorted = order is SortOrder.Descending ? arr.OrderByDescending (c => c) :
-                   arr.OrderBy (c => c);
+      var sorted = order is SortOrder.Descending ? arr.OrderByDescending (c => c)
+                                                 : arr.OrderBy (c => c);
       var partition = sorted.ToLookup (c => c == splChar);
       var splChars = partition[true].ToList ();
       var notSpl = partition[false].ToList ();

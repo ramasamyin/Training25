@@ -25,10 +25,10 @@ internal class Program {
    //Converts the given input number into roman numeral
    static string ConvertToRoman (int n) {
       var roman = new StringBuilder ();
-      for (int i = 0, len = sValues.Length; i < len; i++) {
-         while (n >= sValues[i]) {
+      for (int i = 0, len = sValues.Length, value = sValues[i]; i < len; i++) {
+         while (n >= value) {
             roman.Append (sSymbols[i]);
-            n -= sValues[i];
+            n -= value;
          }
       }
       return roman.ToString ();
@@ -40,8 +40,7 @@ internal class Program {
       foreach (int divisor in sdivisors) {
          int value = n / divisor;
          if (value == 0) continue;
-         string number = Convert0To99 (value);
-         if (!string.IsNullOrEmpty (number)) parts.Add (number);
+         parts.Add (Convert0To99 (value));
          if (sPlaceByDivisor.TryGetValue (divisor, out var place)) parts.Add (place);
          n %= divisor;
       }
@@ -52,9 +51,9 @@ internal class Program {
    // Converts numbers from 0 to 99 into words
    static string Convert0To99 (int n) {
       return n switch {
-         0 => string.Empty,
          < 10 => sOnes[n],
          < 20 => sTeens[n - 10],
+         // n = 35 => sTens[3] + " " + sOnes[5] => "thirty five"
          _ => sTens[n / 10] + (n % 10 != 0 ? " " + sOnes[n % 10] : "")
       };
    }

@@ -41,7 +41,7 @@ internal class Program {
       foreach (int divisor in sdivisors) {
          int value = n / divisor;
          if (value == 0) continue;
-         parts.Add (Convert0To99 (value));
+         parts.Add (Convert1To99 (value));
          if (sPlaceByDivisor.TryGetValue (divisor, out var place)) parts.Add (place);
          n %= divisor;
       }
@@ -49,8 +49,8 @@ internal class Program {
       return result;
    }
 
-   // Converts numbers from 0 to 99 into words
-   static string Convert0To99 (int n) {
+   // Converts numbers from 1 to 99 into words
+   static string Convert1To99 (int n) {
       return n switch {
          < 10 => sOnes[n],
          < 20 => sTeens[n - 10],
@@ -73,4 +73,3 @@ internal class Program {
    #endregion
 }
 #endregion
-

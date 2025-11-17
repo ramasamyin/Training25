@@ -37,9 +37,7 @@ internal class Program {
       var sorted = order is SortOrder.Descending ? arr.OrderByDescending (c => c)
                                                  : arr.OrderBy (c => c);
       var partition = sorted.ToLookup (c => c == splChar);
-      var splChars = partition[true].ToList ();
-      var notSpl = partition[false].ToList ();
-      arr = [.. notSpl, .. splChars];
+      arr = [.. partition[true], .. partition[false]];
    }
 }
 

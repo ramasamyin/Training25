@@ -53,7 +53,7 @@ internal class Program {
       return n switch {
          < 10 => sOnes[n],
          < 20 => sTeens[n - 10],
-         // n = 35 => sTens[3] + " " + sOnes[5] => "thirty five"
+         /* Example: if n is 35 => sTens[3] + " " + sOnes[5] => "thirty five" */
          _ => sTens[n / 10] + (n % 10 != 0 ? " " + sOnes[n % 10] : "")
       };
    }

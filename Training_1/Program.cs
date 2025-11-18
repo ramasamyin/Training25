@@ -67,8 +67,8 @@ internal class Program {
    static string[] sOnes = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
    static string[] sTeens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
    static string[] sTens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-   static Dictionary<int, string> sRomanMap = new () {{ 1000,"M"},{ 900,"CM"},{ 500,"D"},{ 400,"CD"},
-                                                    { 100,"C"},{ 90,"XC"},{ 50,"L"},{ 40,"XL"},{ 10,"X"},{ 9,"IX"},{ 5,"V"},{ 4,"IV"},{ 1,"I"}};
+   static Dictionary<int, string> sRomanMap = new () { { 1000,"M"},{ 900,"CM"},{ 500,"D"},{ 400,"CD"},{ 100,"C"},{ 90,"XC"},
+                                                      { 50,"L"},{ 40,"XL"},{ 10,"X"},{ 9,"IX"},{ 5,"V"},{ 4,"IV"},{ 1,"I"} };
    #endregion
 }
 #endregion

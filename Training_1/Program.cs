@@ -25,11 +25,10 @@ internal class Program {
    //Converts the given input number into roman numeral
    static string ConvertToRoman (int n) {
       var roman = new StringBuilder ();
-      for (int i = 0, len = sValues.Length; i < len; i++) {
-         int value = sValues[i];
-         while (n >= value) {
-            roman.Append (sSymbols[i]);
-            n -= value;
+      foreach (var kvp in sRomanMap) {
+         while (n >= kvp.Key) {
+            roman.Append (kvp.Value);
+            n -= kvp.Key;
          }
       }
       return roman.ToString ();
@@ -64,12 +63,12 @@ internal class Program {
    static Dictionary<int, string> sPlaceByDivisor = new () {
       [(int)1E5] = "lakh", [(int)1E3] = "thousand", [100] = "hundred", [1] = ""
    };
-   static int[] sdivisors = { 100000, 1000, 100, 1 };
+   static int[] sdivisors = [100000, 1000, 100, 1];
    static string[] sOnes = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
    static string[] sTeens = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
    static string[] sTens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-   static int[] sValues = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
-   static string[] sSymbols = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+   static Dictionary<int, string> sRomanMap = new () { { 1000,"M"},{ 900,"CM"},{ 500,"D"},{ 400,"CD"},
+                                                               { 100,"C"},{ 90,"XC"},{ 50,"L"},{ 40,"XL"},{ 10,"X"},{ 9,"IX"},{ 5,"V"},{ 4,"IV"},{ 1,"I"}};
    #endregion
 }
 #endregion

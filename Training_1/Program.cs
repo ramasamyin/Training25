@@ -45,38 +45,36 @@ internal class Program {
 
 #region class MyList<T> ---------------------------------------------------------------------------
 class MyList<T> {
-   private T[] _items;
-   private int _count;
 
-   public MyList () {
-      _items = new T[4];
-      _count = 0;
-   }
+   #region Constructors----------------------------------------------
+   public MyList () => InitializeStorage ();
+   #endregion
 
    #region Properties -----------------------------------------------
+   // Number of elements in the list
    public int Count => _count;
+
+   // Gets the current storage capacity of the list
    public int Capacity => _items.Length;
 
    // Indexer
    public T this[int index] {
       get {
-         if (index < 0 || index >= _count) throw new IndexOutOfRangeException ("Index out of range.");
+         ValidateIndex (index);
          return _items[index];
       }
       set {
-         if (index < 0 || index >= _count) throw new IndexOutOfRangeException ("Index out of range.");
+         ValidateIndex (index);
          _items[index] = value;
       }
    }
    #endregion
 
-   #region Implementation -------------------------------------------
+   #region Methods -------------------------------------------
    // Add element to the end
    public void Add (T a) {
-      if (_count == _items.Length)
-         Resize (); // double capacity
-      _items[_count] = a;
-      _count++;
+      EnsureCapacity ();
+      _items[_count++] = a;
    }
 
    // Remove first occurrence of the element
@@ -89,15 +87,12 @@ class MyList<T> {
    }
 
    // Clear all elements
-   public void Clear () {
-      _items = new T[4];
-      _count = 0;
-   }
+   public void Clear () => InitializeStorage ();
 
    // Insert element at a given index
    public void Insert (int index, T a) {
       if (index < 0 || index > _count) throw new ArgumentOutOfRangeException (nameof (index), "Invalid index for insert.");
-      if (_count == _items.Length) Resize ();
+      EnsureCapacity ();
       for (int i = _count; i > index; i--) _items[i] = _items[i - 1];
       _items[index] = a;
       _count++;
@@ -109,7 +104,9 @@ class MyList<T> {
       for (int i = index; i < _count - 1; i++) _items[i] = _items[i + 1];
       _items[_count - 1] = default!; _count--;
    }
+   #endregion
 
+   #region Implementation -------------------------------------------
    // Double the capacity
    private void Resize () {
       int newCapacity = _items.Length * 2;
@@ -117,6 +114,29 @@ class MyList<T> {
       Array.Copy (_items, newArray, _count);
       _items = newArray;
    }
+
+   // Validates index
+   private void ValidateIndex (int index) {
+      if (index < 0 || index >= _count)
+         throw new IndexOutOfRangeException ("Index out of range.");
+   }
+   #endregion
+
+   // Initializes storage
+   private void InitializeStorage () {
+      _items = new T[4];
+      _count = 0;
+   }
+
+   // Checks capacity and resizes if needed
+   private void EnsureCapacity () {
+      if (_count == _items.Length)
+         Resize ();
+   }
+
+   #region Fields ---------------------------------------------------
+   private T[] _items = default!;
+   private int _count;
    #endregion
 }
 #endregion

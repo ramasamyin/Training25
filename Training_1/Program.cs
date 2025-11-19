@@ -3,12 +3,39 @@
 // Copyright (c) Metamation India.
 // ------------------------------------------------------------------
 // Program.cs
-// Program on main branch.
+// Program on T15 branch.
 // ------------------------------------------------------------------------------------------------
+using static System.Console;
 namespace Training_1;
 
 internal class Program {
    static void Main () {
+      List<char> oldList = [];
+      MyList<char> newList = new ();
+      // Adding an item to the list
+      oldList.Add ('i');
+      oldList.Add ('n');
+      oldList.Add ('d');
+      oldList.Add ('u');
+      newList.Add ('i');
+      newList.Add ('n');
+      newList.Add ('d');
+      newList.Add ('u');
+      // Setting an element to a specific index
+      oldList[3] = 'k';
+      newList[3] = 'k';
+      // Removing an item from the list
+      oldList.Remove ('d');
+      newList.Remove ('d');
+      // Inserting an item at a specific index
+      oldList.Insert (1, 'm');
+      newList.Insert (1, 'm');
+      // Removing an item at a specific index
+      oldList.RemoveAt (2);
+      newList.RemoveAt (2);
+      for (int i = 0; i < newList.Count; i++) Write ($"Old list elements: {oldList[i]} ");
+      WriteLine ();
+      for (int i = 0; i < newList.Count; i++) Write ($"Custom list elements: {newList[i]} ");
    }
 
    class MyList<T> {
@@ -83,4 +110,3 @@ internal class Program {
       }
    }
 }
-

@@ -33,9 +33,11 @@ internal class Program {
       // Removing an item at a specific index
       oldList.RemoveAt (2);
       newList.RemoveAt (2);
-      for (int i = 0; i < newList.Count; i++) Write ($"Old list elements: {oldList[i]} ");
+      Write ("Old list elements: ");
+      for (int i = 0; i < oldList.Count; i++) Write ($"{oldList[i]} ");
       WriteLine ();
-      for (int i = 0; i < newList.Count; i++) Write ($"Custom list elements: {newList[i]} ");
+      Write ("Custom list elements: ");
+      for (int i = 0; i < newList.Count; i++) Write ($"{newList[i]} ");
    }
 
    class MyList<T> {

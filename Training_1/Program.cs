@@ -51,21 +51,13 @@ class MyList<T> {
    #endregion
 
    #region Properties -----------------------------------------------
-   /// <summary>
-   /// Gets the number of elements currently in the list
-   /// </summary>
-   public int Count => _count;
-
-   /// <summary>
-   /// Gets the total number of elements the list can hold before needing to resize its internal storage
-   /// </summary>
+   /// <summary> Gets the total number of elements the list can hold before needing to resize its storage</summary>
    public int Capacity => _items.Length;
 
-   /// <summary>
-   /// Gets or sets the element at the specified index in the list.
-   /// </summary>
-   /// <param name="index"></param>
-   /// <returns>The element at the specified index.</returns>
+   /// <summary> Gets the number of elements currently in the list </summary>
+   public int Count => _count;
+
+   /// <summary> Gets or sets the element at the specified index in the list.</summary>
    public T this[int index] {
       get {
          ValidateIndex (index);
@@ -79,40 +71,16 @@ class MyList<T> {
    #endregion
 
    #region Methods --------------------------------------------------
-   /// <summary>
-   /// Adds the specified element to the end of the collection.
-   /// </summary>
-   /// <param name="a">The element to add to the collection.</param>
+   /// <summary>Adds the specified element to the end of the collection.</summary>
    public void Add (T a) {
       Resize ();
       _items[_count++] = a;
    }
 
-   /// <summary>
-   /// Removes the first occurrence of the specified element from the list.
-   /// </summary>
-   /// <param name="a">The element to remove from the collection</param>
-   public bool Remove (T a) {
-      int index = Array.IndexOf (_items, a, 0, _count);
-      if (index == -1)
-         return false;
-      RemoveAt (index);
-      return true;
-   }
-
-   /// <summary>
-   /// Clears the current state and reinitializes the object to its default state.
-   /// </summary>
+   /// <summary> Clears the current state and reinitializes the object to its default state.</summary>
    public void Clear () => Init ();
 
-   /// <summary>
-   /// Inserts the specified element at the given index in the collection.
-   /// </summary>
-   /// <remarks>After the insertion, all elements at or after the specified index are shifted one position to
-   /// the right.</remarks>
-   /// <param name="index">The zero-based index at which the element should be inserted. Must be within the range of 0 to the current count
-   /// of elements, inclusive.</param>
-   /// <param name="a">The element to insert into the collection.</param>
+   /// <summary> Inserts the specified element at the given index in the collection.</summary>
    public void Insert (int index, T a) {
       if (index < 0 || index > _count) throw new IndexOutOfRangeException ("Index out of range");
       Resize ();
@@ -121,12 +89,16 @@ class MyList<T> {
       _count++;
    }
 
-   /// <summary>
-   /// Removes the element at the specified index from the collection.
-   /// </summary>
-   /// <remarks>After the element is removed, all subsequent elements are shifted one position to the left, and
-   /// the size of the collection is reduced by one.</remarks>
-   /// <param name="index">The zero-based index of the element to remove.</param>
+   /// <summary> Removes the first occurrence of the specified element from the list.</summary>
+   public bool Remove (T a) {
+      int index = Array.IndexOf (_items, a, 0, _count);
+      if (index == -1)
+         return false;
+      RemoveAt (index);
+      return true;
+   }
+
+   /// <summary>Removes the element at the specified index from the collection.</summary>
    public void RemoveAt (int index) {
       ValidateIndex (index);
       for (int i = index; i < _count - 1; i++) _items[i] = _items[i + 1];
@@ -135,13 +107,18 @@ class MyList<T> {
    #endregion
 
    #region Implementation -------------------------------------------
+   // Initializes storage
+   void Init () {
+      _items = new T[4];
+      _count = 0;
+   }
+
    // Checks and resizes storage if needed
    void Resize () {
-      if (_count == _items.Length) {
-         T[] newArray = new T[_items.Length * 2];
-         Array.Copy (_items, newArray, _count);
-         _items = newArray;
-      }
+      if (_count != _items.Length) return;
+      T[] newArray = new T[_items.Length * 2];
+      Array.Copy (_items, newArray, _count);
+      _items = newArray;
    }
 
    // Validates index
@@ -151,15 +128,9 @@ class MyList<T> {
    }
    #endregion
 
-   // Initializes storage
-   void Init () {
-      _items = new T[4];
-      _count = 0;
-   }
-
    #region Private Data ---------------------------------------------
-   private T[] _items = default!;
    private int _count;
+   private T[] _items = default!;
    #endregion
 }
 #endregion

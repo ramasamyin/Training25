@@ -51,86 +51,86 @@ class MyList<T> {
    #endregion
 
    #region Properties -----------------------------------------------
-   /// <summary> Gets the total number of elements the list can hold before needing to resize its storage</summary>
-   public int Capacity => _items.Length;
+   /// <summary> Total number of elements the list can hold </summary>
+   public int Capacity => mData.Length;
 
-   /// <summary> Gets the number of elements currently in the list </summary>
-   public int Count => _count;
+   /// <summary> Number of elements currently in the list </summary>
+   public int Count => mCount;
 
-   /// <summary> Gets or sets the element at the specified index in the list.</summary>
+   /// <summary> Gets or sets the element at the specified index in the list </summary>
    public T this[int index] {
       get {
          ValidateIndex (index);
-         return _items[index];
+         return mData[index];
       }
       set {
          ValidateIndex (index);
-         _items[index] = value;
+         mData[index] = value;
       }
    }
    #endregion
 
    #region Methods --------------------------------------------------
-   /// <summary>Adds the specified element to the end of the collection.</summary>
+   /// <summary>Adds the given element to the list </summary>
    public void Add (T a) {
       Resize ();
-      _items[_count++] = a;
+      mData[mCount++] = a;
    }
 
-   /// <summary> Clears the current state and reinitializes the object to its default state.</summary>
+   /// <summary> Reinitializes the list </summary>
    public void Clear () => Init ();
 
-   /// <summary> Inserts the specified element at the given index in the collection.</summary>
+   /// <summary> Inserts the specified element at the given index in the collection </summary>
    public void Insert (int index, T a) {
-      if (index < 0 || index > _count) throw new IndexOutOfRangeException ("Index out of range");
+      if (index < 0 || index > mCount) throw new IndexOutOfRangeException ("Index out of range");
       Resize ();
-      for (int i = _count; i > index; i--) _items[i] = _items[i - 1];
-      _items[index] = a;
-      _count++;
+      for (int i = mCount; i > index; i--) mData[i] = mData[i - 1];
+      mData[index] = a;
+      mCount++;
    }
 
-   /// <summary> Removes the first occurrence of the specified element from the list.</summary>
+   /// <summary> Removes the first occurrence of the specified element from the list </summary>
    public bool Remove (T a) {
-      int index = Array.IndexOf (_items, a, 0, _count);
+      int index = Array.IndexOf (mData, a, 0, mCount);
       if (index == -1)
          return false;
       RemoveAt (index);
       return true;
    }
 
-   /// <summary>Removes the element at the specified index from the collection.</summary>
+   /// <summary>Removes the element at the specified index from the collection </summary>
    public void RemoveAt (int index) {
       ValidateIndex (index);
-      for (int i = index; i < _count - 1; i++) _items[i] = _items[i + 1];
-      _items[_count - 1] = default!; _count--;
+      for (int i = index; i < mCount - 1; i++) mData[i] = mData[i + 1];
+      mData[mCount - 1] = default!; mCount--;
    }
    #endregion
 
    #region Implementation -------------------------------------------
    // Initializes storage
    void Init () {
-      _items = new T[4];
-      _count = 0;
+      mData = new T[4];
+      mCount = 0;
    }
 
    // Checks and resizes storage if needed
    void Resize () {
-      if (_count != _items.Length) return;
-      T[] newArray = new T[_items.Length * 2];
-      Array.Copy (_items, newArray, _count);
-      _items = newArray;
+      if (mCount != mData.Length) return;
+      T[] newArray = new T[mData.Length * 2];
+      Array.Copy (mData, newArray, mCount);
+      mData = newArray;
    }
 
    // Validates index
    void ValidateIndex (int index) {
-      if (index < 0 || index >= _count)
+      if (index < 0 || index >= mCount)
          throw new IndexOutOfRangeException ("Index out of range.");
    }
    #endregion
 
    #region Private Data ---------------------------------------------
-   private int _count;
-   private T[] _items = default!;
+   private int mCount;
+   private T[] mData = default!;
    #endregion
 }
 #endregion

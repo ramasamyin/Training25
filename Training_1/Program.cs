@@ -29,8 +29,8 @@ internal class Program {
       myList.Remove ('d');
       WriteLine ($"After removing 'd': list Count = {list.Count}, myList Count = {myList.Count}");
       // Inserting an item at a specific index
-      list.Insert (1, 'm');
-      myList.Insert (1, 'm');
+      list.Insert (3, 'm');
+      myList.Insert (3, 'm');
       WriteLine ($"After inserting 'm' at index 1: list[1] = {list[1]}, myList[1] = {myList[1]}");
       // Removing an item at a specific index
       list.RemoveAt (2);
@@ -51,13 +51,13 @@ class MyList<T> {
    #endregion
 
    #region Properties -----------------------------------------------
-   /// <summary> Total number of elements the list can hold </summary>
+   /// <summary>Capacity of the index</summary>
    public int Capacity => mData.Length;
 
-   /// <summary> Number of elements currently in the list </summary>
+   /// <summary>Number of elements present in the list</summary>
    public int Count => mCount;
 
-   /// <summary> Gets or sets the element at the specified index in the list </summary>
+   /// <summary>Access or update element</summary>
    public T this[int index] {
       get {
          ValidateIndex (index);
@@ -71,16 +71,16 @@ class MyList<T> {
    #endregion
 
    #region Methods --------------------------------------------------
-   /// <summary>Adds the given element to the list </summary>
+   /// <summary>Adds element to list</summary>
    public void Add (T a) {
       Resize ();
       mData[mCount++] = a;
    }
 
-   /// <summary> Reinitializes the list </summary>
+   /// <summary>Reinitializes the list</summary>
    public void Clear () => Init ();
 
-   /// <summary> Inserts the specified element at the given index in the collection </summary>
+   /// <summary>Inserts the specified element at the given index</summary>
    public void Insert (int index, T a) {
       if (index < 0 || index > mCount) throw new IndexOutOfRangeException ("Index out of range");
       Resize ();
@@ -89,7 +89,7 @@ class MyList<T> {
       mCount++;
    }
 
-   /// <summary> Removes the first occurrence of the specified element from the list </summary>
+   /// <summary>Removes the first occurrence of the specified element</summary>
    public bool Remove (T a) {
       int index = Array.IndexOf (mData, a, 0, mCount);
       if (index == -1)
@@ -98,7 +98,7 @@ class MyList<T> {
       return true;
    }
 
-   /// <summary>Removes the element at the specified index from the collection </summary>
+   /// <summary>Removes the element at the specified index</summary>
    public void RemoveAt (int index) {
       ValidateIndex (index);
       for (int i = index; i < mCount - 1; i++) mData[i] = mData[i + 1];
@@ -121,7 +121,7 @@ class MyList<T> {
       mData = newArray;
    }
 
-   // Validates index
+   // Checks if index is valid for the list
    void ValidateIndex (int index) {
       if (index < 0 || index >= mCount)
          throw new IndexOutOfRangeException ("Index out of range.");
@@ -129,8 +129,8 @@ class MyList<T> {
    #endregion
 
    #region Private Data ---------------------------------------------
-   private int mCount;
-   private T[] mData = default!;
+   int mCount;
+   T[] mData = default!;
    #endregion
 }
 #endregion

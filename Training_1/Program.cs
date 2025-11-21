@@ -51,7 +51,7 @@ class MyList<T> {
    #endregion
 
    #region Properties -----------------------------------------------
-   /// <summary>Capacity of the index</summary>
+   /// <summary>Capacity of the list</summary>
    public int Capacity => mData.Length;
 
    /// <summary>Number of elements present in the list</summary>
@@ -113,7 +113,7 @@ class MyList<T> {
       mCount = 0;
    }
 
-   // Checks and resizes storage if needed
+   // Checks and resizes capacity if needed
    void Resize () {
       if (mCount != mData.Length) return;
       T[] newArray = new T[mData.Length * 2];

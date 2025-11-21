@@ -82,7 +82,7 @@ class MyList<T> {
 
    /// <summary>Inserts the specified element at the given index</summary>
    public void Insert (int index, T a) {
-      if (index < 0 || index > mCount) throw new IndexOutOfRangeException ("Index out of range");
+      if (index < 0 || index > mCount) throw new IndexOutOfRangeException ("Invalid index");
       Resize ();
       for (int i = mCount; i > index; i--) mData[i] = mData[i - 1];
       mData[index] = a;
@@ -124,7 +124,7 @@ class MyList<T> {
    // Checks if index is valid for the list
    void ValidateIndex (int index) {
       if (index < 0 || index >= mCount)
-         throw new IndexOutOfRangeException ("Index out of range.");
+         throw new IndexOutOfRangeException ("Invalid index");
    }
    #endregion
 

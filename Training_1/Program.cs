@@ -99,8 +99,9 @@ class MyList<T> {
    public bool Remove (T a) {
       int index = Array.IndexOf (mData, a, 0, mCount);
       if (index == -1) return false;
+      int Count = mCount;
       RemoveAt (index);
-      return true;
+      return mCount < Count;
    }
 
    /// <summary>Removes the element at the specified index</summary>

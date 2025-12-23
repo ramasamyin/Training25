@@ -29,8 +29,8 @@ internal class Program {
       myList.Remove ('d');
       WriteLine ($"After removing 'd': list Count = {list.Count}, myList Count = {myList.Count}");
       // Inserting an item at a specific index
-      list.Insert (3, 'm');
-      myList.Insert (3, 'm');
+      list.Insert (2, 'm');
+      myList.Insert (2, 'm');
       WriteLine ($"After inserting 'm' at index 1: list[1] = {list[1]}, myList[1] = {myList[1]}");
       // Removing an item at a specific index
       list.RemoveAt (2);
@@ -46,7 +46,7 @@ internal class Program {
 #region class MyList<T> ---------------------------------------------------------------------------
 class MyList<T> {
 
-   #region Constructors----------------------------------------------
+   #region Constructors ----------------------------------------------
    public MyList () {
       mData = new T[4];
       mCount = 0;
@@ -98,8 +98,7 @@ class MyList<T> {
    /// <summary>Removes the first occurrence of the specified element</summary>
    public bool Remove (T a) {
       int index = Array.IndexOf (mData, a, 0, mCount);
-      if (index == -1)
-         return false;
+      if (index == -1) return false;
       RemoveAt (index);
       return true;
    }
@@ -123,8 +122,7 @@ class MyList<T> {
 
    // Checks if index is valid for the list
    void ValidateIndex (int index) {
-      if (index < 0 || index >= mCount)
-         throw new IndexOutOfRangeException ("Invalid index");
+      if (index < 0 || index >= mCount) throw new IndexOutOfRangeException ("Invalid index");
    }
    #endregion
 

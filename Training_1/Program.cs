@@ -47,7 +47,10 @@ internal class Program {
 class MyList<T> {
 
    #region Constructors----------------------------------------------
-   public MyList () => Init ();
+   public MyList () {
+      mData = new T[4];
+      mCount = 0;
+   }
    #endregion
 
    #region Properties -----------------------------------------------
@@ -78,7 +81,10 @@ class MyList<T> {
    }
 
    /// <summary>Reinitializes the list</summary>
-   public void Clear () => Init ();
+   public void Clear () {
+      Array.Clear (mData);
+      mCount = 0;
+   }
 
    /// <summary>Inserts the specified element at the given index</summary>
    public void Insert (int index, T a) {
@@ -107,12 +113,6 @@ class MyList<T> {
    #endregion
 
    #region Implementation -------------------------------------------
-   // Initializes storage
-   void Init () {
-      mData = new T[4];
-      mCount = 0;
-   }
-
    // Checks and resizes capacity if needed
    void Resize () {
       if (mCount != mData.Length) return;
@@ -130,7 +130,7 @@ class MyList<T> {
 
    #region Private Data ---------------------------------------------
    int mCount;
-   T[] mData = default!;
+   T[] mData;
    #endregion
 }
 #endregion

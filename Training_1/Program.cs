@@ -60,7 +60,7 @@ class MyList<T> {
    /// <summary>Number of elements present in the list</summary>
    public int Count => mCount;
 
-   /// <summary>Access or update element</summary>
+   /// <summary>Indexer to get and set the values</summary>
    public T this[int index] {
       get {
          ValidateIndex (index);
@@ -99,9 +99,9 @@ class MyList<T> {
    public bool Remove (T a) {
       int index = Array.IndexOf (mData, a, 0, mCount);
       if (index == -1) return false;
-      int Count = mCount;
+      int count = mCount;
       RemoveAt (index);
-      return mCount < Count;
+      return mCount < count;
    }
 
    /// <summary>Removes the element at the specified index</summary>
